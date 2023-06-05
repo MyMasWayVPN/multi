@@ -1,0 +1,21 @@
+# verbose level 0=info, 1=verbose, 2=very verbose
+verbose: 0
+listen:
+##openssh
+- target_host: 127.0.0.1
+##portopenssh
+  target_port: 22
+##wsopenssh
+  listen_port: 2082
+##openvpn
+- target_host: 127.0.0.1
+##portopenvpn
+  target_port: 1194
+##wsopenvpn
+  listen_port: 2086
+##wsssl
+- target_host: 127.0.0.1
+##wsssl
+  target_port: 22
+##wsssl
+  listen_port: 2095
