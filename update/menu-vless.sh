@@ -222,11 +222,11 @@ sed -i '/#vless$/a\#& '"$user $exp"'\
 sed -i '/#vlessgrpc$/a\#& '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 
-vlesslink1="vless://${uuid}@${domain}:$tls?path=/mw-vlws&security=tls&encryption=none&type=ws#${user}"
-vlesslink2="vless://${uuid}@${domain}:$none?path=/mw-vlws&encryption=none&type=ws#${user}"
-vlesslink3="vless://${uuid}@${domain}:$tls?mode=gun&security=tls&encryption=none&type=grpc&serviceName=mw-vlgrpc&sni=bug.com#${user}"
+vlesslink1="vless://${uuid}@${domain}:$tls?path=/$user/vless&security=tls&encryption=none&type=ws#${user}"
+vlesslink2="vless://${uuid}@${domain}:$none?path=/$user/vless&encryption=none&type=ws#${user}"
+vlesslink3="vless://${uuid}@${domain}:$tls?mode=gun&security=tls&encryption=none&type=grpc&serviceName=$user/vlgrpc&sni=bug.com#${user}"
 systemctl restart xray
-cat > /home/vps/public_html/user-xray/vl-$user-$exp.txt <<END
+cat > /home/vps/public_html/user-xray/vless-$user.txt <<END
 ====================
   FORMAT OPENCLASH 
 ====================
@@ -243,7 +243,7 @@ Vless TLS (SNI)
   servername: BUGSNI.COM
   network: ws
   ws-opts:
-    path: /mw-vlws
+    path: /$user/vless
     headers:
       Host: BUGSNI.COM
 ====================
@@ -260,7 +260,7 @@ Vless TLS (WSS)
   servername: ${domain}
   network: ws
   ws-opts:
-    path: wss://bug.com/mw-vlws
+    path: wss://bug.com/$user/vless
     headers:
       Host: BUGSNI.COM
 ====================
@@ -277,7 +277,7 @@ Vless NTLS
   servername: ${domain}
   network: ws
   ws-opts:
-    path: /mw-vlws
+    path: /$user/vless
     headers:
       Host: ${domain}
   udp: true
@@ -296,7 +296,7 @@ Vless GRPC
   network: grpc
   grpc-opts:
   grpc-mode: gun
-  grpc-service-name: mw-vlgrpc
+  grpc-service-name: $user/vlgrpc
   udp: true
 ====================
  Link TLS :
@@ -322,9 +322,9 @@ echo -e "$COLOR1 ${NC} port NTLS     : $none"
 echo -e "$COLOR1 ${NC} id            : ${uuid}"
 echo -e "$COLOR1 ${NC} Encryption    : none" 
 echo -e "$COLOR1 ${NC} Network       : ws" 
-echo -e "$COLOR1 ${NC} Path          : /mw-vlws" 
-echo -e "$COLOR1 ${NC} Path WSS      : wss://bug.com/mw-vlws" 
-echo -e "$COLOR1 ${NC} Path          : mw-vlgrpc" 
+echo -e "$COLOR1 ${NC} Path          : /$user/vless" 
+echo -e "$COLOR1 ${NC} Path WSS      : wss://bug.com/$user/vless" 
+echo -e "$COLOR1 ${NC} Path          : $user/vlgrpc" 
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
 echo -e "$COLOR1 ${NC} Link TLS :"
@@ -337,7 +337,7 @@ echo -e "$COLOR1 ${NC} Link GRPC : "
 echo -e "$COLOR1 ${NC} ${vlesslink3}" 
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$COLOR1 ${NC}  Link Detail Akun : http://$domain:81/user-xray/$user-$exp.txt"
+echo -e "$COLOR1 ${NC}  Link Detail Akun : http://$domain:81/user-xray/vless-$user.txt"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
 echo -e "$COLOR1│${NC}                 • MasWayVPN •                 $COLOR1│$NC"

@@ -12,7 +12,7 @@ TIME=$(date +'%Y-%m-%d %H:%M:%S')
 RAMMS=$(free -m | awk 'NR==2 {print $2}')
 TIMES="10"
 CHATID="-1001956940889"
-KEY="6006599143:AAEgstCAioq35JgX97HaW_G3TAkLKzLZS_w"
+KEY="5830417881:AAFwOFZKwPbDRUW-UUDrv60-xTzccSFTelU"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear 
 BURIQ () {
@@ -303,7 +303,7 @@ echo -e "$green[INFO]$NC Install SSH & UDP"
 sleep 2
 clear
 wget https://raw.githubusercontent.com/mymaswayvpn/multi/main/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2" -O install-udp && rm -rf /tmp/cookies.txt && chmod +x install-udp && ./install-udp
+wget -O install-udp https://raw.githubusercontent.com/mymaswayvpn/multi/main/ssh/udp-custom.sh && chmod +x install-udp && ./install-udp
 #Instal Xray
 echo -e "$green[INFO]$NC Install XRAY Websocket & GRPC!"
 sleep 2
@@ -330,6 +330,12 @@ wget https://raw.githubusercontent.com/mymaswayvpn/multi/main/update/update.sh &
 clear
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 clear
+echo -ne "[ ${yell}WARNING${NC} ] Do you want Install Bot Panel ? (y/n)? "
+read answer
+if [ "$answer" == "${answer#[Yy]}" ] ;then
+menu-bot
+else
+
 cat> /root/.profile << END
 # ~/.profile: executed by Bourne-compatible login shells.
 
@@ -342,8 +348,9 @@ fi
 mesg n || true
 clear
 figlet -c MasWayVPN | lolcat
+echo ""
 read -n 1 -s -r -p "   Press Enter To Continue on menu"
-
+echo ""
 menu
 END
 chmod 644 /root/.profile
@@ -378,6 +385,7 @@ echo ""
 echo "   >>> Service & Port"  | tee -a log-install.txt
 echo "   - OpenSSH                 : 22"  | tee -a log-install.txt
 echo "   - SSH Websocket           : 80" | tee -a log-install.txt
+echo "   - SSH UDP                 : 1-65535" | tee -a log-install.txt
 echo "   - SSH SSL Websocket       : 443" | tee -a log-install.txt
 echo "   - SSH NON-SSL Websocket   : 80, 8880, 2082" | tee -a log-install.txt
 echo "   - SLOWDNS                 : 5300 [OFF]" | tee -a log-install.txt
@@ -410,8 +418,8 @@ echo "   - Admin Control" | tee -a log-install.txt
 echo "   - Restore Data" | tee -a log-install.txt
 echo "   - Full Orders For Various Services" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "   >>> WhatsApp : +6283850135751 (Text Only)"  | tee -a log-install.txt
-echo "   >>> Telegram : t.me/MasWaySTORE"  | tee -a log-install.txt
+echo "   >>> WhatsApp : +6283120857907 (Text Only)"  | tee -a log-install.txt
+echo "   >>> Telegram : t.me/MasWayVPN"  | tee -a log-install.txt
 echo ""
 echo ""
 echo "------------------------------------------------------------"
@@ -426,9 +434,11 @@ rm /root/insshws.sh
 rm /root/update.sh
 rm /root/nontls.sh
 rm /root/ins-xray.sh
+rm /root/install-udp.sh
 secs_to_human "$(($(date +%s) - ${start}))" | tee -a log-install.txt
 echo -e "
 "
+fi
 echo -ne "[ ${yell}WARNING${NC} ] Do you want to reboot now ? (y/n)? "
 read answer
 if [ "$answer" == "${answer#[Yy]}" ] ;then

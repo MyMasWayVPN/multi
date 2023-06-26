@@ -2,7 +2,7 @@
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 ###########- COLOR CODE -##############
-BOT="https://raw.githubusercontent.com/myridwan/src/ipuk/"
+BOT="https://raw.githubusercontent.com/mymaswayvpn/bot/main/"
 colornow=$(cat /etc/mwstore/theme/color.conf)
 NC="\e[0m"
 export GREEN='\033[0;32m';
@@ -174,7 +174,7 @@ echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━�
 echo -e "$COLBG1                  • BOT PANEL •                   $NC"
 echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e ""
-echo -e " $COLOR1 [01]$NC • Start & Stop Bot"
+echo -e " $COLOR1 [01]$NC • Start Bot"
 echo -e ""
 echo -e " $COLOR1 [00]$NC • Back To Main Menu"
 echo -e ""

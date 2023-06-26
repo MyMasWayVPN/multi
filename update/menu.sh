@@ -52,7 +52,6 @@ PERMISSION () {
     fi
     BURIQ
 }
-COLOR1='\033[0;33m'
 COLOR2='\033[0;39m'
 red='\e[1;31m'
 green='\e[1;32m'

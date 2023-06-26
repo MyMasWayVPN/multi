@@ -241,7 +241,7 @@ sed -i '$ iproxy_set_header Connection "upgrade";' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
-sed -i '$ ilocation = /mw-vlws' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation = /$user/vless' /etc/nginx/conf.d/xray.conf
 sed -i '$ i{' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_pass http://127.0.0.1:'"$vless"';' /etc/nginx/conf.d/xray.conf
@@ -253,7 +253,7 @@ sed -i '$ iproxy_set_header Connection "upgrade";' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
-sed -i '$ ilocation = /mw-vmws' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation = /$user/vmess' /etc/nginx/conf.d/xray.conf
 sed -i '$ i{' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_pass http://127.0.0.1:'"$vmess"';' /etc/nginx/conf.d/xray.conf
@@ -289,7 +289,7 @@ sed -i '$ iproxy_set_header Connection "upgrade";' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
-sed -i '$ ilocation = /mw-trws' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation = /$user/trojan_ws' /etc/nginx/conf.d/xray.conf
 sed -i '$ i{' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_pass http://127.0.0.1:'"$trojanws"';' /etc/nginx/conf.d/xray.conf
@@ -301,7 +301,7 @@ sed -i '$ iproxy_set_header Connection "upgrade";' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
-sed -i '$ ilocation = /mw-ssws' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation = /$user/ss_ws' /etc/nginx/conf.d/xray.conf
 sed -i '$ i{' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_pass http://127.0.0.1:'"$ssws"';' /etc/nginx/conf.d/xray.conf
@@ -313,7 +313,7 @@ sed -i '$ iproxy_set_header Connection "upgrade";' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
-sed -i '$ ilocation ^~ /mw-vlgrpc' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation ^~ /$user/vlgrpc' /etc/nginx/conf.d/xray.conf
 sed -i '$ i{' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ igrpc_set_header X-Real-IP \$remote_addr;' /etc/nginx/conf.d/xray.conf
@@ -322,7 +322,7 @@ sed -i '$ igrpc_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ igrpc_pass grpc://127.0.0.1:'"$vlessgrpc"';' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
-sed -i '$ ilocation ^~ /mw-vmgrpc' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation ^~ /$user/vmgrpc' /etc/nginx/conf.d/xray.conf
 sed -i '$ i{' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ igrpc_set_header X-Real-IP \$remote_addr;' /etc/nginx/conf.d/xray.conf
@@ -331,7 +331,7 @@ sed -i '$ igrpc_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ igrpc_pass grpc://127.0.0.1:'"$vmessgrpc"';' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
-sed -i '$ ilocation ^~ /mw-trgrpc' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation ^~ /$user/trgrpc' /etc/nginx/conf.d/xray.conf
 sed -i '$ i{' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ igrpc_set_header X-Real-IP \$remote_addr;' /etc/nginx/conf.d/xray.conf
@@ -340,7 +340,7 @@ sed -i '$ igrpc_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ igrpc_pass grpc://127.0.0.1:'"$trojangrpc"';' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
-sed -i '$ ilocation ^~ /mw-ssgrpc' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation ^~ /$user/ssgrpc' /etc/nginx/conf.d/xray.conf
 sed -i '$ i{' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ igrpc_set_header X-Real-IP \$remote_addr;' /etc/nginx/conf.d/xray.conf
@@ -391,7 +391,7 @@ cat <<EOF> /etc/xray/config.json
        "streamSettings":{
          "network": "ws",
             "wsSettings": {
-                "path": "/mw-vlws"
+                "path": "/$user/vless"
           }
         }
      },
@@ -411,7 +411,7 @@ cat <<EOF> /etc/xray/config.json
        "streamSettings":{
          "network": "ws",
             "wsSettings": {
-                "path": "/mw-vmws"
+                "path": "/$user/vmess"
           }
         }
      },
@@ -472,7 +472,7 @@ cat <<EOF> /etc/xray/config.json
        "streamSettings":{
            "network": "ws",
            "wsSettings": {
-               "path": "/mw-trws"
+               "path": "/$user/trojan_ws"
             }
          }
      },
@@ -493,7 +493,7 @@ cat <<EOF> /etc/xray/config.json
        "streamSettings":{
           "network": "ws",
              "wsSettings": {
-               "path": "/mw-ssws"
+               "path": "/$user/ss_ws"
            }
         }
      },	
@@ -513,7 +513,7 @@ cat <<EOF> /etc/xray/config.json
           "streamSettings":{
              "network": "grpc",
              "grpcSettings": {
-                "serviceName": "mw-vlgrpc"
+                "serviceName": "$user/vlgrpc"
            }
         }
      },
@@ -533,7 +533,7 @@ cat <<EOF> /etc/xray/config.json
        "streamSettings":{
          "network": "grpc",
             "grpcSettings": {
-                "serviceName": "mw-vmgrpc"
+                "serviceName": "$user/vmgrpc"
           }
         }
      },
@@ -553,7 +553,7 @@ cat <<EOF> /etc/xray/config.json
          "streamSettings":{
          "network": "grpc",
            "grpcSettings": {
-               "serviceName": "mw-trgrpc"
+               "serviceName": "$user/trgrpc"
          }
       }
    },
@@ -574,7 +574,7 @@ cat <<EOF> /etc/xray/config.json
     "streamSettings":{
      "network": "grpc",
         "grpcSettings": {
-           "serviceName": "mw-ssgrpc"
+           "serviceName": "$user/ssgrpc"
           }
        }
     }	
@@ -726,7 +726,7 @@ $domain:443
 
     encode gzip
 
-    handle_path /mw-vlws {
+    handle_path /$user/vless {
 
         reverse_proxy localhost:10001
 
@@ -734,19 +734,19 @@ $domain:443
 
     import vmess
 
-    handle_path /mw-vmws {
+    handle_path /$user/vmess {
 
         reverse_proxy localhost:10002
 
     }
 
-    handle_path /mw-trws {
+    handle_path /$user/trojan_ws {
 
         reverse_proxy localhost:10003
 
     }
 
-    handle_path /mw-ssws {
+    handle_path /$user/ss_ws {
 
         reverse_proxy localhost:10004
 
@@ -778,9 +778,9 @@ path /xray
 
 path /yha
 
-path /mw-vmws
+path /$user/vmess
 
-path /mw-vlws
+path /$user/vless
 
 path /*
 

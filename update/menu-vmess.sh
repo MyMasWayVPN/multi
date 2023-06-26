@@ -4,8 +4,8 @@ biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 ###########- COLOR CODE -##############
 AKUN="AKUN VMESS"
 TIMES="10"
-CHATID="1210833546"
-KEY="6006599143:AAEgstCAioq35JgX97HaW_G3TAkLKzLZS_w"
+CHATID="$(cat /root/id/telegram | grep -w "ID" | cut -d: -f2|sed 's/ //g')"
+KEY="5830417881:AAFwOFZKwPbDRUW-UUDrv60-xTzccSFTelU"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 colornow=$(cat /etc/mwstore/theme/color.conf)
 NC="\e[0m"
@@ -197,8 +197,8 @@ none="$(cat ~/log-install.txt | grep -w "Vmess None TLS" | cut -d: -f2|sed 's/ /
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 
 read -rp "   Input Username : " -e user
-#read -p "   Owner     : " OWNER
-#read -p "Input Id Grup (-1001911868043) : " CHATIDGC
+read -rp "   Owner     : " OWNER
+read -rp "   Input Id Telegram : " CHATIDGC
       
 if [ -z $user ]; then
 echo -e "$COLOR1│${NC} [Error] Username cannot be empty "
@@ -245,7 +245,7 @@ asu=`cat<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/mw-vmws",
+      "path": "/$user/vmess",
       "type": "none",
       "host": "${domain}",
       "tls": "tls"
@@ -260,7 +260,7 @@ ask=`cat<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/mw-vmws",
+      "path": "/$user/vmess",
       "type": "none",
       "host": "${domain}",
       "tls": "none"
@@ -275,7 +275,7 @@ grpc=`cat<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "grpc",
-      "path": "mw-vmgrpc",
+      "path": "$user/vmgrpc",
       "type": "none",
       "host": "${domain}",
       "tls": "tls"
@@ -290,7 +290,7 @@ vmesslink2="vmess://$(echo $ask | base64 -w 0)"
 vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
 systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
-cat > /home/vps/public_html/user-xray/vm-$user-$exp.txt <<END
+cat > /home/vps/public_html/user-xray/vmess-$user.txt <<END
 ====================
   FORMAT OPENCLASH               
 ====================
@@ -309,7 +309,7 @@ Vmess TLS (SNI)
   servername: ${domain}
   network: ws
   ws-opts:
-    path: /mw-vmws
+    path: /$user/vmess
     headers:
       Host: BUGSNI.COM
 ====================
@@ -328,7 +328,7 @@ Vmess TLS (WSS)
   servername: ${domain}
   network: ws
   ws-opts:
-    path: wss://bug.com/mw-vmws
+    path: wss://bug.com/$user/vmess
     headers:
       Host: ${domain}
 ====================
@@ -347,7 +347,7 @@ Vmess NTLS
   servername: ${domain}
   network: ws
   ws-opts:
-    path: /mw-vmws
+    path: /$user/vmess
     headers:
       Host: ${domain}
 ====================
@@ -365,7 +365,7 @@ Vmess GRPC
   servername: BUGSNI.COM
   skip-cert-verify: true
   grpc-opts:
-    grpc-service-name: mw-vmgrpc
+    grpc-service-name: $user/vmgrpc
 ====================
  Link TLS :
  ${vmesslink1}
@@ -407,9 +407,9 @@ echo -e "$COLOR1 ${NC} id            : ${uuid}"
 echo -e "$COLOR1 ${NC} alterId       : 0" 
 echo -e "$COLOR1 ${NC} Security      : auto" 
 echo -e "$COLOR1 ${NC} Network       : ws" 
-echo -e "$COLOR1 ${NC} Path          : /mw-vmws" 
-echo -e "$COLOR1 ${NC} Path WSS      : wss://bug.com/mw-vmws" 
-echo -e "$COLOR1 ${NC} ServiceName   : mw-vmgrpc" 
+echo -e "$COLOR1 ${NC} Path          : /$user/vmess" 
+echo -e "$COLOR1 ${NC} Path WSS      : wss://bug.com/$user/vmess" 
+echo -e "$COLOR1 ${NC} ServiceName   : $user/vmgrpc" 
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
 echo -e "$COLOR1 ${NC} Link TLS : "
@@ -422,7 +422,7 @@ echo -e "$COLOR1 ${NC} Link GRPC : "
 echo -e "$COLOR1 ${NC} ${vmesslink3}"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$COLOR1 ${NC}Format Openclash: http://${domain}:81/user-xray/vm-${user}-${exp}.txt"
+echo -e "$COLOR1 ${NC}Format Openclash: http://${domain}:81/user-xray/vmess-${user}.txt"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
 echo -e "$COLOR1│${NC}                 • MasWayVPN •                 $COLOR1│$NC"

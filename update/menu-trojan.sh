@@ -4,8 +4,8 @@ biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 ###########- COLOR CODE -##############
 AKUN="AKUN TROJAN"
 TIMES="10"
-CHATID="1210833546"
-KEY="6006599143:AAEgstCAioq35JgX97HaW_G3TAkLKzLZS_w"
+CHATID="$(cat /root/id/telegram | grep -w "ID" | cut -d: -f2|sed 's/ //g')"
+KEY="5830417881:AAFwOFZKwPbDRUW-UUDrv60-xTzccSFTelU"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 colornow=$(cat /etc/mwstore/theme/color.conf)
 NC="\e[0m"
@@ -207,8 +207,8 @@ echo -e "$COLOR1┌────────────────────�
 tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 read -rp "   Input Username : " -e user
-#read -p "   Owner     : " OWNER
-#read -p "Input Id Grup (-1001911868043) : " CHATIDGC
+read -p "   Owner     : " OWNER
+read -p "   Input Id Telegram : " CHATIDGC
 if [ -z $user ]; then
 echo -e "$COLOR1│${NC}   [Error] Username cannot be empty "
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
@@ -243,9 +243,9 @@ sed -i '/#trojanws$/a\#! '"$user $exp"'\
 sed -i '/#trojangrpc$/a\#! '"$user $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 systemctl restart xray
-trojanlink1="trojan://${uuid}@${domain}:${tr}?mode=gun&security=tls&type=grpc&serviceName=mw-trgrpc&sni=${domain}#${user}"
-trojanlink="trojan://${uuid}@bug.com:${tr}?path=%2Fmw-trws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
-cat > /home/vps/public_html/user-xray/tr-$user-$exp.txt <<END
+trojanlink1="trojan://${uuid}@${domain}:${tr}?mode=gun&security=tls&type=grpc&serviceName=$user/trgrpc&sni=${domain}#${user}"
+trojanlink="trojan://${uuid}@bug.com:${tr}?path=%2F$user/trojan_ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
+cat > /home/vps/public_html/user-xray/trojan-$user.txt <<END
 ====================
   FORMAT OPENCLASH  
 ====================
@@ -260,7 +260,7 @@ Trojan-WS (SNI)
   sni: BUGSNI.COM
   network: ws
   ws-opts:
-    path: /mw-trws
+    path: /$user/trojan_ws
     headers:
       Host: BUGSNI.COM
   udp: true
@@ -276,7 +276,7 @@ Trojan-WSS
   sni: ${domain}
   network: ws
   ws-opts:
-    path: wss://BUG.COM/mw-trws
+    path: wss://BUG.COM/$user/trojan_ws
     headers:
       Host: BUGSNI.COM
   udp: true
@@ -293,7 +293,7 @@ Trojan-WS (CDN)
   skip-cert-verify: true
   udp: true
   ws-opts:
-    path: /mw-trws
+    path: /$user/trojan_ws
     headers:
         Host: ${domain}
 ====================
@@ -309,7 +309,7 @@ Trojan GRPC
   skip-cert-verify: true
   network: grpc
   grpc-opts:
-    grpc-service-name: mw-trgrpc
+    grpc-service-name: $user/trgrpc
 ====================
  Link TLS :
  ${vlesslink1}
@@ -346,9 +346,9 @@ echo -e "$COLOR1 ${NC} Expired On  : $exp"
 echo -e "$COLOR1 ${NC} Host/IP     : ${domain}" 
 echo -e "$COLOR1 ${NC} Port        : ${tr}" 
 echo -e "$COLOR1 ${NC} Key         : ${uuid}" 
-echo -e "$COLOR1 ${NC} Path        : /mw-trws"
-echo -e "$COLOR1 ${NC} Path WSS    : wss://bug.com/mw-trws" 
-echo -e "$COLOR1 ${NC} ServiceName : mw-trgrpc" 
+echo -e "$COLOR1 ${NC} Path        : /$user/trojan_ws"
+echo -e "$COLOR1 ${NC} Path WSS    : wss://bug.com/$user/trojan_ws" 
+echo -e "$COLOR1 ${NC} ServiceName : $user/trgrpc" 
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
 echo -e "$COLOR1 ${NC} Link WS : "
@@ -358,7 +358,7 @@ echo -e "$COLOR1 ${NC} Link GRPC : "
 echo -e "$COLOR1 ${NC} ${trojanlink1}"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$COLOR1 ${NC}  Link Detail Akun : http://$domain:81/user-xray/${user}-$exp.txt"
+echo -e "$COLOR1 ${NC}  Link Detail Akun : http://$domain:81/user-xray/trojan-${user}.txt"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
 echo -e "$COLOR1│${NC}                 • MasWayVPN •                 $COLOR1│$NC"

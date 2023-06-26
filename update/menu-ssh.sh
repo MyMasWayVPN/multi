@@ -4,8 +4,8 @@ biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 ###########- COLOR CODE -##############
 AKUN="AKUN SSH"
 TIMES="10"
-CHATID="1210833546"
-KEY="6006599143:AAEgstCAioq35JgX97HaW_G3TAkLKzLZS_w"
+CHATID="$(cat /root/id/telegram | grep -w "ID" | cut -d: -f2|sed 's/ //g')"
+KEY="5830417881:AAFwOFZKwPbDRUW-UUDrv60-xTzccSFTelU"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 colornow=$(cat /etc/mwstore/theme/color.conf)
 NC="\e[0m"
@@ -40,8 +40,8 @@ echo -e "$COLOR1│${NC} ${COLBG1}               • SSH PANEL MENU •         
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
 read -p "   Username : " Login
-#read -p "   Owner     : " OWNER
-#read -p "Input Id Grup (-1001911868043) : " CHATIDGC
+read -p "   Owner     : " OWNER
+read -p "   Input Id Telegram : " CHATIDGC
 CEKFILE=/etc/xray/ssh.txt
 if [ -f "$CEKFILE" ]; then
 file001="OK"
@@ -134,7 +134,7 @@ exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 PID=`ps -ef |grep -v grep | grep sshws |awk '{print $2}'`
 exp2=`date -d "$masaaktif days" +"%Y-%m-%d"`
-cat > /home/vps/public_html/user-ssh/$Login-$exp2.txt <<END
+cat > /home/vps/public_html/user-ssh/ssh-$Login.txt <<END
 ============================
     Detail SSH & UDP  
 ============================
@@ -185,7 +185,7 @@ echo -e "$COLOR1┌────────────────────�
 echo -e "  GET wss://bug.com/ HTTP/1.1[crlf]Host: [host] [crlf]Upgrade: websocket[crlf][crlf]"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$COLOR1 ${NC}  Link Detail Akun : http://$domen:81/user-ssh/$Login$exp.txt"
+echo -e "$COLOR1 ${NC}  Link Detail Akun : http://$domen:81/user-ssh/ssh-$Login.txt"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
 echo -e "$COLOR1│${NC}                 • MasWayVPN •                 $COLOR1│$NC"
@@ -215,7 +215,7 @@ echo -e "$COLOR1┌────────────────────�
 echo -e "  GET wss://bug.com/ HTTP/1.1[crlf]Host: [host] [crlf]Upgrade: websocket[crlf][crlf]"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$COLOR1 ${NC}  Link Detail Akun : http://$domen:81/user-ssh/$Login-$exp2.txt"
+echo -e "$COLOR1 ${NC}  Link Detail Akun : http://$domen:81/user-ssh/ssh-$Login.txt"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
 echo -e "$COLOR1│${NC}                 • MasWayVPN •                 $COLOR1│$NC"
@@ -690,9 +690,9 @@ d1=$(date -d "$exp" +%s)
 d2=$(date -d "$today" +%s)
 certificate=$(( (d1 - d2) / 86400 ))
 clear
-echo -e "$COLOR1┌────────────────────────────────────────────────────────────┐${NC}"
-echo -e "                      << INFORMASI VPS >>                    \E[0m" | lolcat
-echo -e "$COLOR1└────────────────────────────────────────────────────────────┘${NC}"
+echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
+echo -e "$COLOR1│${NC} ${COLBG1}          • INFO VPS •               ${NC} $COLOR1│$NC"
+echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
 echo -e "  ${BLUE}• ${GREEN}Sever Uptime        ${NC}= $( uptime -p  | cut -d " " -f 2-10000 ) "
 echo -e "  ${BLUE}• ${GREEN}Current Time        ${NC}= $( date -d "0 days" +"%d-%m-%Y | %X" )"
 echo -e "  ${BLUE}• ${GREEN}Operating System    ${NC}= $( cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g')( $(uname -m))"
@@ -701,23 +701,22 @@ echo -e "  ${BLUE}• ${GREEN}Server IP           ${NC}= $IP"
 echo -e "  ${BLUE}• ${GREEN}ISP-VPS             ${NC}= ${ISP}"
 echo -e "  ${BLUE}• ${GREEN}City                ${NC}= ${CITY}"
 echo -e "  ${BLUE}• ${GREEN}Developer           ${NC}= MasWayVPN Tunneling ${NC}"
-echo -e "$PURPLE┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$PURPLE│ ${BLUE}                 $NC•$BLUE MENU SSH $NC•                  $PURPLE │$NC"
-echo -e "$PURPLE└─────────────────────────────────────────────────┘${NC}"
-echo -e " $PURPLE┌───────────────────────────────────────────────┐${NC}"
-echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}01${NC}]  ADD SSH  "
-echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}02${NC}]  ADD TRIAL   "
-echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}03${NC}]  USER ONLINE"
-echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}04${NC}]  ENABLE WS"
-echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}05${NC}]  DELETE SSH"
-echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}06${NC}]  RENEW SSH"
-echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}07${NC}]  CEK USER"
-echo -e " $PURPLE│$NC "
-echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}00${NC}]  Go Back"
-echo -e " $PURPLE└───────────────────────────────────────────────┘${NC}"
-echo -e "$PURPLE┌──────────────────────${NC} BY $PURPLE───────────────────────┐${NC}"
-echo -e "$PURPLE│${BLUE}                 $NC•$BLUE MasWayVPN $NC•                $PURPLE│$NC"
-echo -e "$PURPLE└─────────────────────────────────────────────────┘${NC}" 
+echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
+echo -e "$COLOR1│${NC} ${COLBG1}           • MENU SSH •               ${NC} $COLOR1│$NC"
+echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
+echo -e " $COLOR1┌───────────────────────────────────────────────┐${NC}"
+echo -e " $COLOR1│$NC   ${COLOR1}[01]${NC}  ADD SSH  "
+echo -e " $COLOR1│$NC   ${COLOR1}[02]${NC}  ADD TRIAL   "
+echo -e " $COLOR1│$NC   ${COLOR1}[03]${NC}  USER ONLINE"
+echo -e " $COLOR1│$NC   ${COLOR1}[04]${NC}  ENABLE WS"
+echo -e " $COLOR1│$NC   ${COLOR1}[05]${NC}  DELETE SSH"
+echo -e " $COLOR1│$NC   ${COLOR1}[06]${NC}  RENEW SSH"
+echo -e " $COLOR1│$NC   ${COLOR1}[07]${NC}  CEK USER"
+echo -e " $COLOR1│$NC "
+echo -e " $COLOR1│$NC   ${COLOR1}[${BLUE}00${NC}]  Go Back"
+echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
+echo -e "$COLOR1│${NC} ${COLBG1}           • MASWAT vpn-login-tcp •               ${NC} $COLOR1│$NC"
+echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -p " Select menu :  "  opt
 echo -e ""

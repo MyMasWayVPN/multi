@@ -117,12 +117,12 @@ echo $cipher:$uuid > /tmp/log
 shadowsocks_base64=$(cat /tmp/log)
 echo -n "${shadowsocks_base64}" | base64 > /tmp/log1
 shadowsocks_base64e=$(cat /tmp/log1)
-shadowsockslink="ss://${shadowsocks_base64e}@$domain:$tls?plugin=xray-plugin;mux=0;path=/mw-ssws;host=$domain;tls#${user}"
-shadowsockslink1="ss://${shadowsocks_base64e}@$domain:$tls?plugin=xray-plugin;mux=0;serviceName=mw-ssgrpc;host=$domain;tls#${user}"
+shadowsockslink="ss://${shadowsocks_base64e}@$domain:$tls?plugin=xray-plugin;mux=0;path=/$user/ss_ws;host=$domain;tls#${user}"
+shadowsockslink1="ss://${shadowsocks_base64e}@$domain:$tls?plugin=xray-plugin;mux=0;serviceName=$user/ssgrpc;host=$domain;tls#${user}"
 systemctl restart xray
 rm -rf /tmp/log
 rm -rf /tmp/log1
-cat > /home/vps/public_html/mw-ssws/ss-$user.txt <<-END
+cat > /home/vps/public_html/$user/ss_ws/ss-$user.txt <<-END
 # sodosok ws
 { 
  "dns": {
@@ -189,7 +189,7 @@ cat > /home/vps/public_html/mw-ssws/ss-$user.txt <<-END
           "headers": {
             "Host": "$domain"
           },
-          "path": "/mw-ssws"
+          "path": "/$user/ss_ws"
         }
       },
       "tag": "proxy"
@@ -290,7 +290,7 @@ cat > /home/vps/public_html/mw-ssws/ss-$user.txt <<-END
       "streamSettings": {
         "grpcSettings": {
           "multiMode": true,
-          "serviceName": "mw-ssgrpc"
+          "serviceName": "$user/ssgrpc"
         },
         "network": "grpc",
         "security": "tls",
@@ -352,8 +352,8 @@ echo -e "$COLOR1 ${NC} Port  GRPC  : ${tls}"
 echo -e "$COLOR1 ${NC} Password    : ${uuid}"  
 echo -e "$COLOR1 ${NC} Cipers      : aes-128-gcm"  
 echo -e "$COLOR1 ${NC} Network     : ws/grpc"  
-echo -e "$COLOR1 ${NC} Path        : /mw-ssws"  
-echo -e "$COLOR1 ${NC} ServiceName : mw-ssgrpc"  
+echo -e "$COLOR1 ${NC} Path        : /$user/ss_ws"  
+echo -e "$COLOR1 ${NC} ServiceName : $user/ssgrpc"  
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
 echo -e "$COLOR1 ${NC} Link TLS : "
@@ -362,7 +362,7 @@ echo -e "$COLOR1 ${NC} "
 echo -e "$COLOR1 ${NC} Link GRPC : "
 echo -e "$COLOR1 ${NC} ${shadowsockslink1}"  
 echo -e "$COLOR1 ${NC} "
-echo -e "$COLOR1 ${NC} Link JSON : http://${domain}:81/mw-ssws/ss-$user.txt"  
+echo -e "$COLOR1 ${NC} Link JSON : http://${domain}:81/$user/ss_ws/ss-$user.txt"  
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
 echo -e "$COLOR1│${NC}                 • MasWayVPN •                 $COLOR1│$NC"
@@ -473,7 +473,7 @@ else
 exp=$(grep -wE "^## $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
 sed -i "/^## $user $exp/,/^},{/d" /etc/xray/config.json
 systemctl restart xray > /dev/null 2>&1
-rm /home/vps/public_html/mw-ssws/ss-$user.txt
+rm /home/vps/public_html/$user/ss_ws/ss-$user.txt
 clear
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
 echo -e "$COLOR1│${NC} ${COLBG1}           • DELETE TROJAN USER •              ${NC} $COLOR1│$NC"

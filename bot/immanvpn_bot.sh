@@ -158,7 +158,7 @@ Disable_Order() {
      }
      [[ "$(grep -wc "vmess" "/tmp/order")" = '1' ]] && {
          touch /etc/.maAsiss/.cache/DisableOrderVMESS
-         sed -i "/mw-vmws/c\VMESS : [OFF]" /etc/.maAsiss/.cache/StatusDisable
+         sed -i "/$user/vmess/c\VMESS : [OFF]" /etc/.maAsiss/.cache/StatusDisable
          ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
              --text "✅ Success Disabled VMess" \
              --parse_mode html
@@ -2356,9 +2356,9 @@ if [[ "${callback_query_from_id[$id]}" == "$Admin_ID" ]]; then
 echo -n > /tmp/other.txt
 data=( `cat /etc/$raycheck/config.json | grep '^###' | cut -d ' ' -f 2 | sort | uniq`);
 
-echo -e "━━━━━━━━━━━━━━━━━━━━━" > /tmp/mw-vmws-login
-echo -e "         🟢 Vmess User Login 🟢  " >> /tmp/mw-vmws-login
-echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/mw-vmws-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" > /tmp/$user/vmess-login
+echo -e "         🟢 Vmess User Login 🟢  " >> /tmp/$user/vmess-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/$user/vmess-login
 
 for akun in "${data[@]}"
 do
@@ -2386,25 +2386,25 @@ if [[ -z "$jum" ]]; then
 echo > /dev/null
 else
 jum2=$(cat /tmp/ipvmess.txt | nl)
-echo "user : $akun" >> /tmp/mw-vmws-login
-echo "$jum2" >> /tmp/mw-vmws-login
-echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/mw-vmws-login
+echo "user : $akun" >> /tmp/$user/vmess-login
+echo "$jum2" >> /tmp/$user/vmess-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/$user/vmess-login
 fi
 rm -rf /tmp/ipvmess.txt
 done
 
 oth=$(cat /tmp/other.txt | sort | uniq | nl)
-echo "other" >> /tmp/mw-vmws-login
-echo "$oth" >> /tmp/mw-vmws-login
-echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/mw-vmws-login
+echo "other" >> /tmp/$user/vmess-login
+echo "$oth" >> /tmp/$user/vmess-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/$user/vmess-login
 rm -rf /tmp/other.txt
-msg=$(cat /tmp/mw-vmws-login)
-cekk=$(cat /tmp/mw-vmws-login | wc -l)
+msg=$(cat /tmp/$user/vmess-login)
+cekk=$(cat /tmp/$user/vmess-login | wc -l)
 if [ "$cekk" = "0" ] || [ "$cekk" = "6" ]; then
 ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
                 --text "⛔ NO USERS ONLINE ⛔" \
                 --parse_mode html
-rm /tmp/mw-vmws-login
+rm /tmp/$user/vmess-login
 return 0
 else
 ShellBot.deleteMessage --chat_id ${callback_query_message_chat_id[$id]} \
@@ -2412,7 +2412,7 @@ ShellBot.deleteMessage --chat_id ${callback_query_message_chat_id[$id]} \
 ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
          --text "$msg" \
          --parse_mode html
-rm /tmp/mw-vmws-login
+rm /tmp/$user/vmess-login
 return 0
 fi
 else
@@ -2854,9 +2854,9 @@ if [[ "${callback_query_from_id[$id]}" == "$Admin_ID" ]]; then
 echo -n > /tmp/other.txt
 data=( `cat /etc/$raycheck/config.json | grep '^#!' | cut -d ' ' -f 2 | sort | uniq`);
 
-echo -e "━━━━━━━━━━━━━━━━━━━━━" > /tmp/mw-vmws-login
-echo -e "         🟢 Trojan User Login 🟢  " >> /tmp/mw-vmws-login
-echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/mw-vmws-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" > /tmp/$user/vmess-login
+echo -e "         🟢 Trojan User Login 🟢  " >> /tmp/$user/vmess-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/$user/vmess-login
 
 for akun in "${data[@]}"
 do
@@ -2884,25 +2884,25 @@ if [[ -z "$jum" ]]; then
 echo > /dev/null
 else
 jum2=$(cat /tmp/ipvmess.txt | nl)
-echo "user : $akun" >> /tmp/mw-vmws-login
-echo "$jum2" >> /tmp/mw-vmws-login
-echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/mw-vmws-login
+echo "user : $akun" >> /tmp/$user/vmess-login
+echo "$jum2" >> /tmp/$user/vmess-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/$user/vmess-login
 fi
 rm -rf /tmp/ipvmess.txt
 done
 
 oth=$(cat /tmp/other.txt | sort | uniq | nl)
-echo "other" >> /tmp/mw-vmws-login
-echo "$oth" >> /tmp/mw-vmws-login
-echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/mw-vmws-login
+echo "other" >> /tmp/$user/vmess-login
+echo "$oth" >> /tmp/$user/vmess-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/$user/vmess-login
 rm -rf /tmp/other.txt
-msg=$(cat /tmp/mw-vmws-login)
-cekk=$(cat /tmp/mw-vmws-login | wc -l)
+msg=$(cat /tmp/$user/vmess-login)
+cekk=$(cat /tmp/$user/vmess-login | wc -l)
 if [ "$cekk" = "0" ] || [ "$cekk" = "6" ]; then
 ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
                 --text "⛔ NO USERS ONLINE ⛔" \
                 --parse_mode html
-rm /tmp/mw-vmws-login
+rm /tmp/$user/vmess-login
 return 0
 else
 ShellBot.deleteMessage --chat_id ${callback_query_message_chat_id[$id]} \
@@ -2910,7 +2910,7 @@ ShellBot.deleteMessage --chat_id ${callback_query_message_chat_id[$id]} \
 ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
          --text "$msg" \
          --parse_mode html
-rm /tmp/mw-vmws-login
+rm /tmp/$user/vmess-login
 return 0
 fi
 else
@@ -3409,9 +3409,9 @@ if [[ "${callback_query_from_id[$id]}" == "$Admin_ID" ]]; then
 echo -n > /tmp/other.txt
 data=( `cat /etc/$raycheck/config.json | grep '^#&' | cut -d ' ' -f 2 | sort | uniq`);
 
-echo -e "━━━━━━━━━━━━━━━━━━━━━" > /tmp/mw-vmws-login
-echo -e "         🟢 VLess User Login 🟢  " >> /tmp/mw-vmws-login
-echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/mw-vmws-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" > /tmp/$user/vmess-login
+echo -e "         🟢 VLess User Login 🟢  " >> /tmp/$user/vmess-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/$user/vmess-login
 
 for akun in "${data[@]}"
 do
@@ -3439,25 +3439,25 @@ if [[ -z "$jum" ]]; then
 echo > /dev/null
 else
 jum2=$(cat /tmp/ipvmess.txt | nl)
-echo "user : $akun" >> /tmp/mw-vmws-login
-echo "$jum2" >> /tmp/mw-vmws-login
-echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/mw-vmws-login
+echo "user : $akun" >> /tmp/$user/vmess-login
+echo "$jum2" >> /tmp/$user/vmess-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/$user/vmess-login
 fi
 rm -rf /tmp/ipvmess.txt
 done
 
 oth=$(cat /tmp/other.txt | sort | uniq | nl)
-echo "other" >> /tmp/mw-vmws-login
-echo "$oth" >> /tmp/mw-vmws-login
-echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/mw-vmws-login
+echo "other" >> /tmp/$user/vmess-login
+echo "$oth" >> /tmp/$user/vmess-login
+echo -e "━━━━━━━━━━━━━━━━━━━━━" >> /tmp/$user/vmess-login
 rm -rf /tmp/other.txt
-msg=$(cat /tmp/mw-vmws-login)
-cekk=$(cat /tmp/mw-vmws-login | wc -l)
+msg=$(cat /tmp/$user/vmess-login)
+cekk=$(cat /tmp/$user/vmess-login | wc -l)
 if [ "$cekk" = "0" ] || [ "$cekk" = "6" ]; then
 ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
                 --text "⛔ NO USERS ONLINE ⛔" \
                 --parse_mode html
-rm /tmp/mw-vmws-login
+rm /tmp/$user/vmess-login
 return 0
 else
 ShellBot.deleteMessage --chat_id ${callback_query_message_chat_id[$id]} \
@@ -3465,7 +3465,7 @@ ShellBot.deleteMessage --chat_id ${callback_query_message_chat_id[$id]} \
 ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
          --text "$msg" \
          --parse_mode html
-rm /tmp/mw-vmws-login
+rm /tmp/$user/vmess-login
 return 0
 fi
 else
@@ -4805,7 +4805,7 @@ fi
 x=$(( "$x" + 1 ))
 done
 msg=$(cat /tmp/ss-login)
-cekk=$(cat /tmp/mw-vmws-login | wc -l)
+cekk=$(cat /tmp/$user/vmess-login | wc -l)
 if [ "$cekk" = "0" ] || [ "$cekk" = "5" ]; then
 ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
                 --text "⛔ NO USERS ONLINE ⛔" \

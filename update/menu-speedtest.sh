@@ -18,17 +18,17 @@ export LIGHT='\033[0;37m'
 export NC='\033[0m'
 
 clear
-echo -e "$PURPLE┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$PURPLE│ ${BLUE}                $NC•$BLUE SPEEDTEST $NC•                  $PURPLE │$NC"
-echo -e "$PURPLE└─────────────────────────────────────────────────┘${NC}"
-echo -e " $PURPLE┌───────────────────────────────────────────────┐${NC}"
+echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
+echo -e "$COLOR1│${NC} ${COLBG1}           • SPEEDTEST •               ${NC} $COLOR1│$NC"
+echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
+echecho -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
 echo -e ""
 speedtest
 echo -e ""
-echo -e " $PURPLE└───────────────────────────────────────────────┘${NC}"
-echo -e "$PURPLE┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$PURPLE│${NC}                 • MasWayVPN •                $PURPLE│$NC"
-echo -e "$PURPLE└─────────────────────────────────────────────────┘${NC}"
+echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
+echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
+echo -e "$COLOR1│${NC} ${COLBG1}           • MASWAY VPN •               ${NC} $COLOR1│$NC"
+echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -n 1 -s -r -p "  Press any key to back on menu"
 menu-set
