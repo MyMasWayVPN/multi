@@ -7,7 +7,7 @@
           WEBSOCKET / SSH / SSL / XRAY
 
 
-<pre><code>apt --fix-missing update && apt update && apt upgrade -y && apt install -y wget screen && wget -q [https://raw.githubusercontent.com/mw-store/mw-store.github.io/main/assets/autosc/install.sh](https://raw.githubusercontent.com/mw-store.github.io/main/assets/autosc/install.sh) && chmod +x install.sh && ./install.sh</code></pre>
+<pre><code>apt --fix-missing update && apt update && apt upgrade -y && apt install -y wget screen && wget -q https://raw.githubusercontent.com/mw-store/mw-store.github.io/main/assets/autosc/install.sh && chmod +x install.sh && ./install.sh</code></pre>
 
 
 <p align="center">
