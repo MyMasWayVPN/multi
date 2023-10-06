@@ -218,7 +218,7 @@ echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━�
 echo -e  "   Jika Notifikasi Ingin Masuk Ke Grub/Channel   "
 echo -e  "        Silahkan Isi Dengan Username"
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-read -p "      BoT Token.       : " bot_id
+read -p "      BoT Token.     : " bot_id
 read -p "      ID/Username   : " p54321
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e "Jika Ingin Mengedit BoT Token & Id/Username Silahkan"
@@ -308,7 +308,7 @@ echo "$NS_DOMAIN" > /etc/xray/dns
 echo "IP=$SUB_DOMAIN" > /var/lib/mwvpn-pro/ipvps.conf
 cp /root/domain /etc/xray
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e "$COLBG1                  • BOT PANEL •                   $NC"
+echo -e "                     • BOT PANEL •                  "
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo "   DOMAIN = $SUB_DOMAIN "
