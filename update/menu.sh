@@ -25,8 +25,9 @@ BURIQ () {
     rm -f /root/tmp
 }
 
-ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
-CITY=$(curl -s ipinfo.io/city )
+ISP=$(curl -s ipinfo.io/org?token=ce3da57536810d | cut -d " " -f 2-10 )
+CITY=$(curl -s ipinfo.io/city?token=ce3da57536810d )
+WKT=$(curl -s ipinfo.io/timezone?token=ce3da57536810d )
 MYIP=$(curl -sS ipv4.icanhazip.com)
 Name=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
 echo $Name > /usr/local/etc/.$Name.ini
@@ -84,6 +85,26 @@ d1=$(date -d "$exp" +%s)
 d2=$(date -d "$today" +%s)
 certificate=$(( (d1 - d2) / 86400 ))
 
+total_ram=` grep "MemTotal: " /proc/meminfo | awk '{ print $2}'`
+totalram=$(($total_ram/1024))
+
+cpu_usage1="$(ps aux | awk 'BEGIN {sum=0} {sum+=$3}; END {print sum}')"
+cpu_usage="$((${cpu_usage1/\.*} / ${corediilik:-1}))"
+cpu_usage+=" %"
+
+#Download/Upload today
+dtoday="$(vnstat -i eth0 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}')"
+utoday="$(vnstat -i eth0 | grep "today" | awk '{print $5" "substr ($6, 1, 1)}')"
+ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
+#Download/Upload yesterday
+dyest="$(vnstat -i eth0 | grep "yesterday" | awk '{print $2" "substr ($3, 1, 1)}')"
+uyest="$(vnstat -i eth0 | grep "yesterday" | awk '{print $5" "substr ($6, 1, 1)}')"
+tyest="$(vnstat -i eth0 | grep "yesterday" | awk '{print $8" "substr ($9, 1, 1)}')"
+#Download/Upload current month
+dmon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $3" "substr ($4, 1, 1)}')"
+umon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $6" "substr ($7, 1, 1)}')"
+tmon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $9" "substr ($10, 1, 1)}')"
+clear
 # =========================================
 vlx=$(grep -c -E "^#& " "/etc/xray/config.json")
 let vla=$vlx/2
@@ -101,6 +122,27 @@ export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 export LC_CTYPE='en_US.utf8'
+# // Exporting Language to UTF-8
+BIBlack='\033[1;90m'      # Black
+BIRed='\033[1;91m'        # Red
+BIGreen='\033[1;92m'      # Green
+BIYellow='\033[1;93m'     # Yellow
+BIBlue='\033[1;94m'       # Blue
+BIPurple='\033[1;95m'     # Purple
+BICyan='\033[1;96m'       # Cyan
+BIWhite='\033[1;97m'      # White
+UWhite='\033[4;37m'       # White
+On_IPurple='\033[0;105m'  #
+On_IRed='\033[0;101m'
+IBlack='\033[0;90m'       # Black
+IRed='\033[0;91m'         # Red
+IGreen='\033[0;92m'       # Green
+IYellow='\033[0;93m'      # Yellow
+IBlue='\033[0;94m'        # Blue
+IPurple='\033[0;95m'      # Purple
+ICyan='\033[0;96m'        # Cyan
+IWhite='\033[0;97m'       # White
+NC='\e[0m'
 
 # // Export Color & Information
 export RED='\033[0;31m'
@@ -274,24 +316,29 @@ clear
 echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e "$COLOR1│${NC}$COLBG1                              • MASWAY TUNNELING •                        $NC$COLOR1│${NC}"
 echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e "  ${BLUE}• ${GREEN}Sever Uptime        ${NC}: $( uptime -p  | cut -d " " -f 2-10000 ) "
-echo -e "  ${BLUE}• ${GREEN}Current Time        ${NC}: $( date -d "0 days" +"%d-%m-%Y | %X" )"
-echo -e "  ${BLUE}• ${GREEN}Operating System    ${NC}: $( cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g')( $(uname -m))"
-echo -e "  ${BLUE}• ${GREEN}Current Domain      ${NC}: $( cat /etc/xray/domain )"
-echo -e "  ${BLUE}• ${GREEN}Server IP           ${NC}: ${IP}"
-echo -e "  ${BLUE}• ${GREEN}ISP-VPS             ${NC}: ${ISP}"
-echo -e "  ${BLUE}• ${GREEN}City                ${NC}: ${CITY}"
-echo -e "  ${BLUE}• ${GREEN}Developer           ${NC}: MasWayVPN Tunneling ${NC}"
+echo -e "💠${BIYellow} Server Uptime       🟰 ${COLOR1}$( uptime -p  | cut -d " " -f 2-10000 ) ${NC}"
+echo -e "💠${BIYellow} Current Time        🟰 ${COLOR1}$( date -d "0 days" +"%d-%m-%Y | %X" )${NC}"
+echo -e "💠${BIYellow} Operating System    🟰 ${COLOR1}$( cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g' ) ( $( uname -m) )${NC}"
+echo -e "💠${BIYellow} Isp                 🟰 ${COLOR1}$ISP ${NC}"
+echo -e "💠${BIYellow} City                🟰 ${COLOR1}$CITY ${NC}"
+echo -e "💠${BIYellow} Ip Vps              🟰 ${COLOR1}$MYIP ${NC}"
+echo -e "💠${BIYellow} Current Domain      🟰 ${COLOR1}$( cat /etc/xray/domain )${NC}"
+echo -e "💠${BIYellow} Jumlah Ram          🟰 ${COLOR1}${totalram} MB${NC}"
+echo -e "💠${BIYellow} CPU Usage           🟰 ${COLOR1}$cpu_usage${NC}"
+echo -e "💠${BIYellow} Whatsapp            🟰 ${BOLD}${BICyan}083120857907${NC}"
+echo -e "💠${BIYellow} AutoScript By       🟰 ${BOLD}${BICyan}MaSwayVPN${NC}"
 echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e "$COLOR1│${NC}$COLBG1                             • STATUS SERVICE •                           $NC$COLOR1│${NC}"
 echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
 echo -e "            ${COLOR2}[ SSH Websocket${NC}: ${status_ws}]  [ NGINX${NC}: ${status_nginx} ] [ XRAY${NC} : ${status_xray} ] "
-echo -e "                                                     ${COLOR2}[ UDP-Custom${NC}: ${status_udp}]  "
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
 echo -e "$COLOR1      │  \033[0m ${BOLD}${YELLOW}SSH     VMESS       VLESS      TROJAN       SHADOWSOCKS$NC  $COLOR1│"
 echo -e "$COLOR1      │  \033[0m ${Blue} $ssh1        $vma           $vla          $tra               $ssa   $NC    $COLOR1│"
+echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
+echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
+echo -e "            ${BICyan} ${NC} ${BICyan}HARI ini${NC}: ${Blue}$ttoday$NC ${BICyan}KEMARIN${NC}: ${Blue}$tyest$NC ${BICyan}BULAN${NC}: ${Blue}$tmon$NC $NC"
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
 echo -e "$COLOR1      │  \033[0m• ${GREEN}Version     ${NC}: ${BLUE}${VER} ${NC}"
