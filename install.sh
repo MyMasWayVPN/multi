@@ -243,11 +243,9 @@ sleep 4
 MYIP=$(wget -qO- icanhazip.com);
 apt install jq curl -y
 
-sub=$(</dev/urandom tr -dc a-z0-9 | head -c5)
-ns=$(</dev/urandom tr -dc a-z0-9 | head -c5)
-DOMAIN=aiosc.me
-SUB_DOMAIN=${sub}.aiosc.me
-NS_DOMAIN=dns-${ns}.aiosc.me
+sub=$(</dev/urandom tr -dc a-z0-9 | head -c3)
+DOMAIN=scvip.my.id
+SUB_DOMAIN=mw-${sub}.scvip.my.id
 CF_ID=akunabal.abal7770@gmail.com
 CF_KEY=4502348bc050806208bb10e3a1af5b9d1d018
 
