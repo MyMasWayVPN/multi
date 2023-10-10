@@ -30,11 +30,6 @@ user=mw-`</dev/urandom tr -dc X-Z0-9 | head -c4`
 domain=$(cat /etc/xray/domain)
 uuid=$(cat /proc/sys/kernel/random/uuid)
 exp=`date -d "1 days" +"%Y-%m-%d"`
-#vless
-sed -i '/#vless$/a\#& '"$user $exp"'\
-},{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
-sed -i '/#vlessgrpc$/a\#& '"$user $exp"'\
-},{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 #Trojan
 sed -i '/#trojanws$/a\#! '"$user $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
@@ -98,13 +93,41 @@ vmess_base643=$( base64 -w 0 <<< $vmess_json3)
 vmesslink1="vmess://$(echo $asu | base64 -w 0)"
 vmesslink2="vmess://$(echo $ask | base64 -w 0)"
 vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
-#vless
-vlesslink1="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=none&type=ws#${user}"
-vlesslink2="vless://${uuid}@${domain}:80?path=/vless&encryption=none&type=ws#${user}"
-vlesslink3="vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vlgrpc&sni=bug.com#${user}"
+trasu=`cat<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "443",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/vmess",
+      "type": "none",
+      "host": "${domain}",
+      "tls": "tls"
+}
+EOF`
+trgrpc=`cat<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "443",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "grpc",
+      "path": "vmgrpc",
+      "type": "none",
+      "host": "${domain}",
+      "tls": "tls"
+}
+EOF`
 #trojan
-trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trgrpc&sni=${domain}#${user}"
-trojanlink="trojan://${uuid}@bug.com:443?path=%2Ftrojan_ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
+#trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trgrpc&sni=${domain}#${user}"
+#trojanlink="trojan://${uuid}@bug.com:443?path=%2Ftrojan_ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
+trojanlink="trojan://$(echo $trasu | base64 -w 0)"
+trojanlink1="trojan://$(echo $trgrpc | base64 -w 0)"
 systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
 #TRIAL SSH
@@ -149,17 +172,6 @@ TEXT="
     ◇━━━━━━━━━━━━━━━━━━━◇
       Vmess GRPC :
       <code>$vmesslink3</code>
-      ◇━━━━━━━━━━━━━━━━━━━◇
-                  VLESS INFO ACCOUNTS
-    ◇━━━━━━━━━━━━━━━━━━━◇
-      Vless TLS :
-      <code>$vlesslink1</code>
-    ◇━━━━━━━━━━━━━━━━━━━◇
-      Vless NTLS :
-      <code>$vlesslink2</code>
-    ◇━━━━━━━━━━━━━━━━━━━◇
-      Vless GRPC :
-      <code>$vlesslink3</code>
     ◇━━━━━━━━━━━━━━━━━━━◇
                   TROJAN INFO ACCOUNTS
     ◇━━━━━━━━━━━━━━━━━━━◇
@@ -172,7 +184,6 @@ TEXT="
     ⚠︎𝘽𝙮 MyMaWay 𝙋𝙧𝙤𝙟𝙚𝙘𝙩 𝙈𝙖𝙣𝙖𝙜𝙚𝙧 𝘾𝙤𝙢𝙢𝙪𝙣𝙞𝙩𝙮⚠︎
     ◇━━━━━━━━━━━━━━━━━━━◇
 "
-`INI ADALAH TULISAN MONO`
 curl -s --max-time $TIME -d "chat_id=$CHATID&disabley_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 
 clear
