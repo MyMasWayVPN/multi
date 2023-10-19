@@ -29,6 +29,7 @@ ISP=$(curl -s ipinfo.io/org?token=ce3da57536810d | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city?token=ce3da57536810d )
 WKT=$(curl -s ipinfo.io/timezone?token=ce3da57536810d )
 MYIP=$(curl -sS ipv4.icanhazip.com)
+lame=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
 Name=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
 echo $Name > /usr/local/etc/.$Name.ini
 CekOne=$(cat /usr/local/etc/.$Name.ini)
@@ -290,7 +291,7 @@ sleep 1
 systemctl restart ws-stunnel
 echo -e " $COLOR1│${NC}  [INFO] • Restarting Ws-Stunnel Services      $COLOR1│${NC}"
 sleep 1
-systemctl restart ws-epro
+systemctl restart ws-com
 echo -e " $COLOR1│${NC}  [INFO] • Restarting Ws-epro Services     $COLOR1│${NC}"
 sleep 1
 systemctl restart stunnel4
@@ -342,7 +343,7 @@ echo -e "            ${BICyan} ${NC} ${BICyan}HARI ini${NC}: ${Blue}$ttoday$NC $
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
 echo -e "$COLOR1      │  \033[0m• ${GREEN}Version     ${NC}: ${BLUE}${VER} ${NC}"
-echo -e "$COLOR1      │  \033[0m• ${GREEN}Clients Name${NC}: ${YELLOW}$Name ${NC}"
+echo -e "$COLOR1      │  \033[0m• ${GREEN}Clients Name${NC}: ${YELLOW}$lame ${NC}"
 echo -e "$COLOR1      │  \033[0m• ${GREEN}Expired     ${NC}: ${YELLOW}$certificate Hari${NC}"
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e "          ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄" | lolcat
