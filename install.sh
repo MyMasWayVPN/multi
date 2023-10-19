@@ -366,6 +366,11 @@ clear
 MYIP=$(wget -qO- icanhazip.com);
 dnsdomain=$(cat /root/domain)
 clear
+cat> /etc/cron.d/autotrial << END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0 5 * * *  root /usr/bin/trial
+END
 cat> /root/.profile << END
 # ~/.profile: executed by Bourne-compatible login shells.
 
