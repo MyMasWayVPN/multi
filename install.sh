@@ -333,6 +333,15 @@ EOF
 cat <<EOF>> /etc/mwstore/theme/color.conf
 blue
 EOF
+
+curl ipinfo.io/org > /root/.isp
+curl ipinfo.io/city > /etc/xray/city
+curl ipinfo.io/org > /root/.myisp
+curl ipinfo.io/city > /root/.city
+curl ipinfo.io/city > /root/.mycity
+curl ifconfig.me > /root/.ip
+curl ipinfo.io/region > /root/.region
+curl ifconfig.me > /root/.myip
     
 #install ssh ovpn
 echo -e "$green[INFO]$NC Install SSH & UDP"
