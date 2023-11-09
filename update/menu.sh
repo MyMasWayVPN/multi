@@ -350,12 +350,12 @@ echo -e "$COLOR1      │  \033[0m• ${GREEN}Expired     ${NC}: ${YELLOW}$certi
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e "          ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄" | lolcat
 echo -e "$COLOR1┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
-echo -e " ${CYAN}[01]${NC} ► ${RED}[${NC}${PURPLE}SSH MENU${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[07]${NC} ► ${RED}[${NC}${PURPLE}BACKUP MENU${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[13]${NC} ► ${RED}[${NC}${PURPLE}SET BANNER${NC}$
-echo -e " ${CYAN}[02]${NC} ► ${RED}[${NC}${PURPLE}VMESS MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[08]${NC} ► ${RED}[${NC}${PURPLE}SETTING MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[14]${NC} ► ${RED}[${NC}${PURPLE}BANDWITH USAGE$$
-echo -e " ${CYAN}[03]${NC} ► ${RED}[${NC}${PURPLE}VLESS MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[09]${NC} ► ${RED}[${NC}${PURPLE}INSTALL UDP${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[15]${NC} ► ${RED}[${NC}${PURPLE}SPEEDTEST${NC}$$
-echo -e " ${CYAN}[04]${NC} ► ${RED}[${NC}${PURPLE}TROJAN MENU${NC}${RED}]${NC}$COLOR1│${NC} ${CYAN}[10]${NC} ► ${RED}[${NC}${PURPLE}ADD DOMAIN${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[16]${NC} ► ${RED}[${NC}${PURPLE}INFO IP${NC}${R$
-echo -e " ${CYAN}[05]${NC} ► ${RED}[${NC}${PURPLE}UPDATE MENU${NC}${RED}]${NC}$COLOR1│${NC} ${CYAN}[11]${NC} ► ${RED}[${NC}${PURPLE}RENEW CERT${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[17]${NC} ► ${RED}[${NC}${PURPLE}TCP TWEAK${NC}$$
-echo -e " ${CYAN}[06]${NC} ► ${RED}[${NC}${PURPLE}THEMA MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[12]${NC} ► ${RED}[${NC}${PURPLE}AUTO REBOOT${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[18]${NC} ► ${RED}[${NC}${PURPLE}RESTART ALL${NC$
+echo -e " ${CYAN}[01]${NC} ► ${RED}[${NC}${PURPLE}SSH MENU${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[07]${NC} ► ${RED}[${NC}${PURPLE}BACKUP MENU${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[13]${NC} ► ${RED}[${NC}${PURPLE}SET BANNER${NC}"
+echo -e " ${CYAN}[02]${NC} ► ${RED}[${NC}${PURPLE}VMESS MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[08]${NC} ► ${RED}[${NC}${PURPLE}SETTING MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[14]${NC} ► ${RED}[${NC}${PURPLE}BANDWITH USAGE${NC}"
+echo -e " ${CYAN}[03]${NC} ► ${RED}[${NC}${PURPLE}VLESS MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[09]${NC} ► ${RED}[${NC}${PURPLE}INSTALL UDP${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[15]${NC} ► ${RED}[${NC}${PURPLE}SPEEDTEST${NC}"
+echo -e " ${CYAN}[04]${NC} ► ${RED}[${NC}${PURPLE}TROJAN MENU${NC}${RED}]${NC}$COLOR1│${NC} ${CYAN}[10]${NC} ► ${RED}[${NC}${PURPLE}ADD DOMAIN${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[16]${NC} ► ${RED}[${NC}${PURPLE}INFO IP${NC}"
+echo -e " ${CYAN}[05]${NC} ► ${RED}[${NC}${PURPLE}UPDATE MENU${NC}${RED}]${NC}$COLOR1│${NC} ${CYAN}[11]${NC} ► ${RED}[${NC}${PURPLE}RENEW CERT${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[17]${NC} ► ${RED}[${NC}${PURPLE}TCP TWEAK${NC}"
+echo -e " ${CYAN}[06]${NC} ► ${RED}[${NC}${PURPLE}THEMA MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[12]${NC} ► ${RED}[${NC}${PURPLE}AUTO REBOOT${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[18]${NC} ► ${RED}[${NC}${PURPLE}RESTART ALL${NC}"
 echo -e "$COLOR1┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e ""
 echo -ne " Select menu : "; read opt
