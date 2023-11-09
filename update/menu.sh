@@ -24,11 +24,11 @@ BURIQ () {
     done
     rm -f /root/tmp
 }
-
-ISP=$(curl -s ipinfo.io/org?token=ce3da57536810d | cut -d " " -f 2-10 )
-CITY=$(curl -s ipinfo.io/city?token=ce3da57536810d )
-WKT=$(curl -s ipinfo.io/timezone?token=ce3da57536810d )
-MYIP=$(curl -sS ipv4.icanhazip.com)
+uptime="$(uptime -p | cut -d " " -f 2-10)"
+ISP=$(cat /root/.myisp)
+CITY=$(cat /root/.mycity)
+DATE2=$(date -R | cut -d " " -f -5)
+IPVPS=$(cat /root/.myip)
 lame=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
 Name=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
 echo $Name > /usr/local/etc/.$Name.ini
@@ -317,12 +317,12 @@ clear
 echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e "$COLOR1│${NC}$COLBG1                              • MASWAY TUNNELING •                        $NC$COLOR1│${NC}"
 echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e "💠${BIYellow} Server Uptime       🟰 ${COLOR1}$( uptime -p  | cut -d " " -f 2-10000 ) ${NC}"
-echo -e "💠${BIYellow} Current Time        🟰 ${COLOR1}$( date -d "0 days" +"%d-%m-%Y | %X" )${NC}"
-echo -e "💠${BIYellow} Operating System    🟰 ${COLOR1}$( cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g' ) ( $( uname -m) )${NC}"
+echo -e "💠${BIYellow} Server Uptime       🟰 ${COLOR1}$uptime ${NC}"
+echo -e "💠${BIYellow} Current Time        🟰 ${COLOR1}$DATE2${NC}"
+echo -e "💠${BIYellow} Operating System    🟰 "`hostnamectl | grep "Operating System" | cut -d ' ' -f5-`
 echo -e "💠${BIYellow} Isp                 🟰 ${COLOR1}$ISP ${NC}"
 echo -e "💠${BIYellow} City                🟰 ${COLOR1}$CITY ${NC}"
-echo -e "💠${BIYellow} Ip Vps              🟰 ${COLOR1}$MYIP ${NC}"
+echo -e "💠${BIYellow} Ip Vps              🟰 ${COLOR1}$IPVPS ${NC}"
 echo -e "💠${BIYellow} Current Domain      🟰 ${COLOR1}$( cat /etc/xray/domain )${NC}"
 echo -e "💠${BIYellow} Jumlah Ram          🟰 ${COLOR1}${totalram} MB${NC}"
 echo -e "💠${BIYellow} CPU Usage           🟰 ${COLOR1}$cpu_usage${NC}"
@@ -335,8 +335,10 @@ echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━�
 echo -e "            ${COLOR2}[ SSH Websocket${NC}: ${status_ws}]  [ NGINX${NC}: ${status_nginx} ] [ XRAY${NC} : ${status_xray} ] "
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
-echo -e "$COLOR1      │  \033[0m ${BOLD}${YELLOW}SSH     VMESS       VLESS      TROJAN       SHADOWSOCKS$NC  $COLOR1│"
-echo -e "$COLOR1      │  \033[0m ${Blue} $ssh1        $vma           $vla          $tra               $ssa   $NC    $COLOR1│"
+echo -e "\e[33m       SSH / WS / UDP / DNS    : $ssh1"
+echo -e "\e[33m       VMESS / WS / GRPC       : $vma"
+echo -e "\e[33m       VLESS / WS / GRPC       : $vla"
+echo -e "\e[33m       TROJAN / WS / GRPC      : $tra"
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
 echo -e "            ${BICyan} ${NC} ${BICyan}HARI ini${NC}: ${Blue}$ttoday$NC ${BICyan}KEMARIN${NC}: ${Blue}$tyest$NC ${BICyan}BULAN${NC}: ${Blue}$tmon$NC $NC"
@@ -348,12 +350,12 @@ echo -e "$COLOR1      │  \033[0m• ${GREEN}Expired     ${NC}: ${YELLOW}$certi
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e "          ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄" | lolcat
 echo -e "$COLOR1┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
-echo -e "  ${CYAN}[01]${NC} ► ${RED}[${NC}${PURPLE}SSH MENU${NC}${RED}]${NC}    $COLOR1│${NC}  ${CYAN}[08]${NC} ► ${RED}[${NC}${PURPLE}BACKUP MENU${NC}${RED}]${NC}  $COLOR1│${NC}  ${CYAN}[14]${NC} ► ${RED}[${NC}${PURPLE}SET BANNER${NC}${RED}]${NC}"
-echo -e "  ${CYAN}[02]${NC} ► ${RED}[${NC}${PURPLE}VMESS MENU${NC}${RED}]${NC}  $COLOR1│${NC}  ${CYAN}[09]${NC} ► ${RED}[${NC}${PURPLE}SETTING MENU${NC}${RED}]${NC} $COLOR1│${NC}  ${CYAN}[15]${NC} ► ${RED}[${NC}${PURPLE}BANDWITH USAGE${NC}${RED}]${NC}"
-echo -e "  ${CYAN}[03]${NC} ► ${RED}[${NC}${PURPLE}VLESS MENU${NC}${RED}]${NC}  $COLOR1│${NC}  ${CYAN}[10]${NC} ► ${RED}[${NC}${PURPLE}INSTALL UDP${NC}${RED}]${NC}  $COLOR1│${NC}  ${CYAN}[16]${NC} ► ${RED}[${NC}${PURPLE}SPEEDTEST${NC}${RED}]${NC}"
-echo -e "  ${CYAN}[04]${NC} ► ${RED}[${NC}${PURPLE}TROJAN MENU${NC}${RED}]${NC} $COLOR1│${NC}  ${CYAN}[11]${NC} ► ${RED}[${NC}${PURPLE}ADD DOMAIN${NC}${RED}]${NC}   $COLOR1│${NC}  ${CYAN}[17]${NC} ► ${RED}[${NC}${PURPLE}INFO IP${NC}${RED}]${NC}"
-echo -e "  ${CYAN}[05]${NC} ► ${RED}[${NC}${PURPLE}SS MENU${NC}${RED}]${NC}     $COLOR1│${NC}  ${CYAN}[12]${NC} ► ${RED}[${NC}${PURPLE}RENEW CERT${NC}${RED}]${NC}   $COLOR1│${NC}  ${CYAN}[18]${NC} ► ${RED}[${NC}${PURPLE}TCP TWEAK${NC}${RED}]${NC}"
-echo -e "  ${CYAN}[06]${NC} ► ${RED}[${NC}${PURPLE}UPDATE MENU${NC}${RED}]${NC} $COLOR1│${NC}  ${CYAN}[13]${NC} ► ${RED}[${NC}${PURPLE}AUTO REBOOT${NC}${RED}]${NC}  $COLOR1│${NC}  ${CYAN}[19]${NC} ► ${RED}[${NC}${PURPLE}RESTART ALL${NC}${RED}]${NC}"
+echo -e " ${CYAN}[01]${NC} ► ${RED}[${NC}${PURPLE}SSH MENU${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[07]${NC} ► ${RED}[${NC}${PURPLE}BACKUP MENU${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[13]${NC} ► ${RED}[${NC}${PURPLE}SET BANNER${NC}$
+echo -e " ${CYAN}[02]${NC} ► ${RED}[${NC}${PURPLE}VMESS MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[08]${NC} ► ${RED}[${NC}${PURPLE}SETTING MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[14]${NC} ► ${RED}[${NC}${PURPLE}BANDWITH USAGE$$
+echo -e " ${CYAN}[03]${NC} ► ${RED}[${NC}${PURPLE}VLESS MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[09]${NC} ► ${RED}[${NC}${PURPLE}INSTALL UDP${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[15]${NC} ► ${RED}[${NC}${PURPLE}SPEEDTEST${NC}$$
+echo -e " ${CYAN}[04]${NC} ► ${RED}[${NC}${PURPLE}TROJAN MENU${NC}${RED}]${NC}$COLOR1│${NC} ${CYAN}[10]${NC} ► ${RED}[${NC}${PURPLE}ADD DOMAIN${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[16]${NC} ► ${RED}[${NC}${PURPLE}INFO IP${NC}${R$
+echo -e " ${CYAN}[05]${NC} ► ${RED}[${NC}${PURPLE}UPDATE MENU${NC}${RED}]${NC}$COLOR1│${NC} ${CYAN}[11]${NC} ► ${RED}[${NC}${PURPLE}RENEW CERT${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[17]${NC} ► ${RED}[${NC}${PURPLE}TCP TWEAK${NC}$$
+echo -e " ${CYAN}[06]${NC} ► ${RED}[${NC}${PURPLE}THEMA MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[12]${NC} ► ${RED}[${NC}${PURPLE}AUTO REBOOT${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[18]${NC} ► ${RED}[${NC}${PURPLE}RESTART ALL${NC$
 echo -e "$COLOR1┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e ""
 echo -ne " Select menu : "; read opt
@@ -362,21 +364,20 @@ case $opt in
 02 | 2) clear ; menu-vmess ;;
 03 | 3) clear ; menu-vless ;;
 04 | 4) clear ; menu-trojan ;;
-05 | 5) clear ; menu-ss ;;
-06 | 6) clear ; wget ${UPDATE} && chmod +x update.sh && ./update.sh ;;
-07 | 7) clear ; menu-theme ;;
-08 | 8) clear ; menu-backup ;;
-09 | 9) clear ; menu-set ;;
-10) clear ; wget -O install-udp https://raw.githubusercontent.com/mymaswayvpn/multi/main/ssh/udp-custom.sh && chmod +x install-udp && ./install-udp ;;
-11) clear ; add-host ;;
-12) clear ; crtxray ;;
-13) clear ; autoboot ;;
-14) clear ; nano /etc/issue.net ;;
-15) clear ; mbandwith ;;
-16) clear ; mspeed ;;
-17) clear ; ipsaya ;;
-18) clear ; menu-tcp ;;
-19) clear ; restart ;;
+05 | 5) clear ; wget ${UPDATE} && chmod +x update.sh && ./update.sh ;;
+06 | 6) clear ; menu-theme ;;
+07 | 7) clear ; menu-backup ;;
+08 | 8) clear ; menu-set ;;
+09 | 9) clear ; wget -O install-udp https://raw.githubusercontent.com/mymaswayvpn/multi/main/ssh/udp-custom.sh && chmod +x install-udp && ./install-udp ;;
+10) clear ; add-host ;;
+11) clear ; crtxray ;;
+12) clear ; autoboot ;;
+13) clear ; nano /etc/issue.net ;;
+14) clear ; mbandwith ;;
+15) clear ; mspeed ;;
+16) clear ; ipsaya ;;
+17) clear ; menu-tcp ;;
+18) clear ; restart ;;
 999) clear ; $up2u ;;
 00 | 0) clear ; menu ;;
 *) clear ; menu ;;
