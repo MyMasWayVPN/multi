@@ -29,6 +29,7 @@ ISP=$(cat /root/.myisp)
 CITY=$(cat /root/.mycity)
 DATE2=$(date -R | cut -d " " -f -5)
 IPVPS=$(cat /root/.myip)
+MYIP=$(curl -sS ipv4.icanhazip.com)
 lame=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
 Name=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
 echo $Name > /usr/local/etc/.$Name.ini
