@@ -211,7 +211,7 @@ cat > /home/vps/public_html/ss_ws/ss-$user.txt <<-END
           "headers": {
             "Host": "$domain"
           },
-          "path": "/ss_ws"
+          "path": "/ss-ws"
         }
       },
       "tag": "proxy"
@@ -374,7 +374,7 @@ echo -e "$COLOR1 ${NC} Port  GRPC  : ${tls}"
 echo -e "$COLOR1 ${NC} Password    : ${uuid}"  
 echo -e "$COLOR1 ${NC} Cipers      : aes-128-gcm"  
 echo -e "$COLOR1 ${NC} Network     : ws/grpc"  
-echo -e "$COLOR1 ${NC} Path        : /ss_ws"  
+echo -e "$COLOR1 ${NC} Path        : /ss-ws"  
 echo -e "$COLOR1 ${NC} ServiceName : ssgrpc"  
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
