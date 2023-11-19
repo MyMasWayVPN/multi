@@ -178,10 +178,10 @@ export Auther="MasWaySTORE"
 
 
 # // Root Checking
-if [ "${EUID}" -ne 0 ]; then
-		echo -e "${EROR} Please Run This Script As Root User !"
-		exit 1
-fi
+#if [ "${EUID}" -ne 0 ]; then
+		#echo -e "${EROR} Please Run This Script As Root User !"
+		#exit 1
+#fi
 
 
 # // Exporting IP Address
@@ -335,48 +335,59 @@ echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━�
 echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
 echo -e "            ${COLOR2}[ SSH Websocket${NC}: ${status_ws}]  [ NGINX${NC}: ${status_nginx} ] [ XRAY${NC} : ${status_xray} ] "
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
-echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
-echo -e "\e[33m       SSH / WS / UDP / DNS    : $ssh1"
-echo -e "\e[33m       VMESS / WS / GRPC       : $vma"
-echo -e "\e[33m       VLESS / WS / GRPC       : $vla"
-echo -e "\e[33m       TROJAN / WS / GRPC      : $tra"
-echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
+echo -e "$COLOR1              ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
+echo -e "\e[33m                       SSH / WS / UDP / DNS    : $ssh1"
+echo -e "\e[33m                       VMESS / WS / GRPC       : $vma"
+echo -e "\e[33m                       VLESS / WS / GRPC       : $vla"
+echo -e "\e[33m                       TROJAN / WS / GRPC      : $tra"
+echo -e "$COLOR1              ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
+echo -e "$COLOR1              ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
+echo -e "$COLOR1              │      \033[0m• ${GREEN}Version       ${NC}: ${BLUE} ${VER} ${NC}"
+echo -e "$COLOR1              │      \033[0m• ${GREEN}Clients Name  ${NC}: ${YELLOW} $lame ${NC}"
+echo -e "$COLOR1              │      \033[0m• ${GREEN}Expired       ${NC}: ${YELLOW} $certificate Hari${NC}"
+echo -e "$COLOR1              ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
 echo -e "            ${BICyan} ${NC} ${BICyan}HARI ini${NC}: ${Blue}$ttoday$NC ${BICyan}KEMARIN${NC}: ${Blue}$tyest$NC ${BICyan}BULAN${NC}: ${Blue}$tmon$NC $NC"
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
-echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
-echo -e "$COLOR1      │  \033[0m• ${GREEN}Version     ${NC}: ${BLUE}${VER} ${NC}"
-echo -e "$COLOR1      │  \033[0m• ${GREEN}Clients Name${NC}: ${YELLOW}$lame ${NC}"
-echo -e "$COLOR1      │  \033[0m• ${GREEN}Expired     ${NC}: ${YELLOW}$certificate Hari${NC}"
-echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
-echo -e "          ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄" | lolcat
-echo -e "$COLOR1┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
-echo -e " ${CYAN}[01]${NC} ► ${RED}[${NC}${PURPLE}SSH MENU${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[07]${NC} ► ${RED}[${NC}${PURPLE}BACKUP MENU${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[13]${NC} ► ${RED}[${NC}${PURPLE}SET BANNER${NC}"
-echo -e " ${CYAN}[02]${NC} ► ${RED}[${NC}${PURPLE}VMESS MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[08]${NC} ► ${RED}[${NC}${PURPLE}SETTING MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[14]${NC} ► ${RED}[${NC}${PURPLE}BANDWITH USAGE${NC}"
-echo -e " ${CYAN}[03]${NC} ► ${RED}[${NC}${PURPLE}VLESS MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[09]${NC} ► ${RED}[${NC}${PURPLE}INSTALL UDP${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[15]${NC} ► ${RED}[${NC}${PURPLE}SPEEDTEST${NC}"
-echo -e " ${CYAN}[04]${NC} ► ${RED}[${NC}${PURPLE}TROJAN MENU${NC}${RED}]${NC}$COLOR1│${NC} ${CYAN}[10]${NC} ► ${RED}[${NC}${PURPLE}ADD DOMAIN${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[16]${NC} ► ${RED}[${NC}${PURPLE}INFO IP${NC}"
-echo -e " ${CYAN}[05]${NC} ► ${RED}[${NC}${PURPLE}UPDATE MENU${NC}${RED}]${NC}$COLOR1│${NC} ${CYAN}[11]${NC} ► ${RED}[${NC}${PURPLE}RENEW CERT${NC}${RED}]${NC}   $COLOR1│${NC} ${CYAN}[17]${NC} ► ${RED}[${NC}${PURPLE}TCP TWEAK${NC}"
-echo -e " ${CYAN}[06]${NC} ► ${RED}[${NC}${PURPLE}THEMA MENU${NC}${RED}]${NC} $COLOR1│${NC} ${CYAN}[12]${NC} ► ${RED}[${NC}${PURPLE}AUTO REBOOT${NC}${RED}]${NC}  $COLOR1│${NC} ${CYAN}[18]${NC} ► ${RED}[${NC}${PURPLE}RESTART ALL${NC}"
-echo -e "$COLOR1┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e ""
+echo -e "$COLOR1  ╔═══════════════════════════════════╦═══════════════════════════════════╗"
+echo -e "$COLOR1  ║ $COLOR2                        ✶ MASWAY TUNNELING ✶                       $COLOR1   ║"
+echo -e "$COLOR1  ║-----------------------------------║-----------------------------------║"
+echo -e "$COLOR1  ╠➣$NC 1. SSH MENU                      $COLOR1╠➣$NC 5. THEME MENU                    $COLOR1║ "
+echo -e "$COLOR1  ╠➣$NC 2. VMESS MENU                    $COLOR1╠➣$NC 6. UPDATE MENU                   $COLOR1║ "
+echo -e "$COLOR1  ╠➣$NC 3. VLESS MENU                    $COLOR1╠➣$NC 7. SETTING MENU                  $COLOR1║ "
+echo -e "$COLOR1  ╠➣$NC 4. TROJAN MENU                   $COLOR1╠➣$NC 8. BACKUP&RESTORE                $COLOR1║ "
+echo -e "$COLOR1  ║-----------------------------------║-----------------------------------║"
+echo -e "$COLOR1  ╚═══════════════════════════════════╩═══════════════════════════════════╝$NC"
+echo -e "$COLOR1  ╔═══════════════════════════════════╦═══════════════════════════════════╗"
+echo -e "$COLOR1  ║ $COLOR2                               ✶ MORE ✶                            $COLOR1   ║"
+echo -e "$COLOR1  ║-----------------------------------║-----------------------------------║"
+echo -e "$COLOR1  ╠➣$NC 09. INSTALL UDP                  $COLOR1╠➣$NC 14. AUTO REBOOT                $COLOR1  ║"
+echo -e "$COLOR1  ╠➣$NC 10. ADD DOMAIN                   $COLOR1╠➣$NC 15. CHANGE BANNER              $COLOR1  ║"
+echo -e "$COLOR1  ╠➣$NC 11. RENEW CERT                   $COLOR1╠➣$NC 16. CEK BANDWITH               $COLOR1  ║"
+echo -e "$COLOR1  ╠➣$NC 12. SPEDDTEST                    $COLOR1╠➣$NC 17. TCP TWEAK                  $COLOR1  ║"
+echo -e "$COLOR1  ╠➣$NC 13. IP CHECKING                  $COLOR1╠➣$NC 18. RESTART SERVICE            $COLOR1  ║"
+echo -e "$COLOR1  ║-----------------------------------║-----------------------------------║"
+echo -e "$COLOR1  ╚═══════════════════════════════════╩═══════════════════════════════════╝$NC"
+
 echo -ne " Select menu : "; read opt
 case $opt in
 01 | 1) clear ; menu-ssh ;;
 02 | 2) clear ; menu-vmess ;;
 03 | 3) clear ; menu-vless ;;
 04 | 4) clear ; menu-trojan ;;
-05 | 5) clear ; wget ${UPDATE} && chmod +x update.sh && ./update.sh ;;
-06 | 6) clear ; menu-theme ;;
-07 | 7) clear ; menu-backup ;;
-08 | 8) clear ; menu-set ;;
+05 | 5) clear ; menu-theme ;;
+06 | 6) clear ; wget ${UPDATE} && chmod +x update.sh && ./update.sh ;;
+07 | 7) clear ; menu-set ;;
+08 | 8) clear ; menu-backup ;;
 09 | 9) clear ; wget -O install-udp https://raw.githubusercontent.com/mymaswayvpn/multi/main/ssh/udp-custom.sh && chmod +x install-udp && ./install-udp ;;
 10) clear ; add-host ;;
 11) clear ; crtxray ;;
-12) clear ; autoboot ;;
-13) clear ; nano /etc/issue.net ;;
-14) clear ; mbandwith ;;
-15) clear ; mspeed ;;
-16) clear ; ipsaya ;;
+12) clear ; mspeed ;;
+13) clear ; ipsaya ;;
+14) clear ; autoboot ;;
+15) clear ; nano /etc/issue.net ;;
+16) clear ; mbandwith ;;
 17) clear ; menu-tcp ;;
 18) clear ; restart ;;
 999) clear ; $up2u ;;
