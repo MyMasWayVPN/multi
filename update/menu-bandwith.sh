@@ -29,5 +29,5 @@ echo -e "                    << MasWayVPN TUNNELING >>                    \E[0m"
 echo -e "$COLOR1└────────────────────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -n 1 -s -r -p "  Press any key to back on menu"
-menu-set
+menu
 esac

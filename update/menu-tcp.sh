@@ -329,5 +329,5 @@ case $opt in
 05 | 5) clear ; delete_Tweaker ;;
 06 | 6) clear ; delete_Tweaker_2 ;;
 00 | 0) clear ; menu-set ;;
-*) clear ; menu-tcp ;;
+*) clear ; menu ;;
 esac

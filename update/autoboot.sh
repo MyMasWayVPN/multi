@@ -142,7 +142,7 @@ case $opt in
 02 | 2) clear ; menu2 ;;
 03 | 3) clear ; menu3 ;;
 04 | 4) clear ; menu4 ;;
-00 | 0) clear ; menu-set ;;
+00 | 0) clear ; menu ;;
 *) clear ; autoboot ;;
 esac
 
