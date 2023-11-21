@@ -427,7 +427,7 @@ d2=$(date -d "$today" +%s)
 certificate=$(( (d1 - d2) / 86400 ))
 clear
 echo -e "$COLOR1  ╔═════════════════════════════╦═══════════════════════════════╗"
-echo -e "$COLOR1  ║$NC$COLBG1                      ✶ VLESS MENU ✶                        $COLOR1 ║"
+echo -e "$COLOR1  ║ $NC$COLBG1                     ✶ VLESS MENU ✶                        $COLOR1 ║"
 echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
 echo -e "$COLOR1  ╠➣$NC 1. ADD VLESS               $COLOR1╠➣$NC 4. DELETE VLESS              $COLOR1║ "
 echo -e "$COLOR1  ╠➣$NC 2. RENEW VLESS             $COLOR1╠➣$NC 5. USER ONLINE               $COLOR1║ "

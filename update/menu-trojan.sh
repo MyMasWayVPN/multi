@@ -425,7 +425,7 @@ d2=$(date -d "$today" +%s)
 certificate=$(( (d1 - d2) / 86400 ))
 clear
 echo -e "$COLOR1  ╔═════════════════════════════╦═══════════════════════════════╗"
-echo -e "$COLOR1  ║$NC$COLBG1                      ✶ TROJAN MENU ✶                       $COLOR1 ║"
+echo -e "$COLOR1  ║ $NC$COLBG1                     ✶ TROJAN MENU ✶                       $COLOR1 ║"
 echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
 echo -e "$COLOR1  ╠➣$NC 1. ADD TROJAN              $COLOR1╠➣$NC 4. DELETE TROJAN             $COLOR1║ "
 echo -e "$COLOR1  ╠➣$NC 2. RENEW TROJAN            $COLOR1╠➣$NC 5. USER TROJAN               $COLOR1║ "
