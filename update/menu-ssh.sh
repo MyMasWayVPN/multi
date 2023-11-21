@@ -702,32 +702,25 @@ echo -e "  ${BLUE}• ${GREEN}Server IP           ${NC}= $MYIP"
 echo -e "  ${BLUE}• ${GREEN}ISP-VPS             ${NC}= ${ISP}"
 echo -e "  ${BLUE}• ${GREEN}City                ${NC}= ${CITY}"
 echo -e "  ${BLUE}• ${GREEN}Developer           ${NC}= MasWayVPN Tunneling ${NC}"
-echo -e "$COLOR1┌────────────────────────────────────────────────────────────┐${NC}"
-echo -e "                           << MENU SSH >>                    \E[0m" | lolcat
-echo -e "$COLOR1└────────────────────────────────────────────────────────────┘${NC}"
-echo -e " $COLOR1┌───────────────────────────────────────────────┐${NC}"
-echo -e " $COLOR1│$NC   ${COLOR1}[01]${NC}  ADD SSH  "
-echo -e " $COLOR1│$NC   ${COLOR1}[02]${NC}  ADD TRIAL   "
-echo -e " $COLOR1│$NC   ${COLOR1}[03]${NC}  USER ONLINE"
-#echo -e " $COLOR1│$NC   ${COLOR1}[04]${NC}  ENABLE WS"
-echo -e " $COLOR1│$NC   ${COLOR1}[04]${NC}  DELETE SSH"
-echo -e " $COLOR1│$NC   ${COLOR1}[05]${NC}  RENEW SSH"
-echo -e " $COLOR1│$NC   ${COLOR1}[06]${NC}  CEK USER"
-echo -e " $COLOR1│$NC "
-echo -e " $COLOR1│$NC   ${COLOR1}[${BLUE}00${NC}]  Go Back"
-echo -e "$COLOR1┌───────────────────────────────────────────────────────────┐${NC}"
-echo -e "                        << MasWayVPN TUNNELING >>                    \E[0m" | lolcat
-echo -e "$COLOR1└────────────────────────────────────────────────────────────┘${NC}"
+echo -e "$COLOR1  ╔═════════════════════════════╦═══════════════════════════════╗"
+echo -e "$COLOR1  ║ $COLOR2                  ✶ MASWAY TUNNELING ✶                   $COLOR1   ║"
+echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
+echo -e "$COLOR1  ╠➣$NC 1. ADD SSH                 $COLOR1╠➣$NC 4. DELETE SSH                $COLOR1║ "
+echo -e "$COLOR1  ╠➣$NC 2. TRIAL SSH               $COLOR1╠➣$NC 5. CEK USER                  $COLOR1║ "
+echo -e "$COLOR1  ╠➣$NC 3. RENEW SSH               $COLOR1╠➣$NC 6. USER ONLINE               $COLOR1║ "
+echo -e "$COLOR1  ║                             $COLOR1╠➣$NC 00. Back To Menu          $COLOR1   ║ "
+echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
+echo -e "$COLOR1  ╚═════════════════════════════╩═══════════════════════════════╝$NC"
 echo -e ""
 read -p " Select menu :  "  opt
 echo -e ""
 case $opt in
 01 | 1) clear ; addssh ;;
 02 | 2) clear ; trialssh ;;
-03 | 3) clear ; cekssh ;;
+03 | 3) clear ; renewssh ;;
 #04 | 4) clear ; sshwss ;;
 04 | 4) clear ; delssh ;;
-05 | 5) clear ; renewssh ;;
+05 | 5) clear ; cekssh ;;
 06 | 6) clear ; memberssh ;;
 00 | 0) clear ; menu ;;
 *) clear ; menu-ssh ;;
