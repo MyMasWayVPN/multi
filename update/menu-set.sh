@@ -278,7 +278,7 @@ CITY=$(curl -s ipinfo.io/city )
 MYIP=$(curl -sS ipv4.icanhazip.com)
 clear
 echo -e "$COLOR1  ╔═════════════════════════════╦═══════════════════════════════╗"
-echo -e "$COLOR1  ║ $COLOR2                    ✶ SETTINGS MENU ✶                    $COLOR1   ║"
+echo -e "$COLOR1  ║$NC$COLBG1                     ✶ SETTINGS MENU ✶                      $COLOR1 ║"
 echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
 echo -e "$COLOR1  ╠➣$NC 1. CEK SERVICE             $COLOR1╠➣$NC 2. ANTI TORRENT $sts          $COLOR1║ "
 echo -e "$COLOR1  ║                             $COLOR1╠➣$NC 00. Back To Menu          $COLOR1   ║ "

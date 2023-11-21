@@ -453,7 +453,7 @@ menu-vmess
 
 clear
 echo -e "$COLOR1  ╔═════════════════════════════╦═══════════════════════════════╗"
-echo -e "$COLOR1  ║ $COLOR2                     ✶ VMESS MENU ✶                      $COLOR1   ║"
+echo -e "$COLOR1  ║$NC$COLBG1                      ✶ VMESS MENU ✶                        $COLOR1 ║"
 echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
 echo -e "$COLOR1  ╠➣$NC 1. ADD VMESS               $COLOR1╠➣$NC 4. DELETE VMESS              $COLOR1║ "
 echo -e "$COLOR1  ╠➣$NC 2. RENEW VMESS             $COLOR1╠➣$NC 5. USER ONLINE               $COLOR1║ "
