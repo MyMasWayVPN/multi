@@ -277,30 +277,13 @@ ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 MYIP=$(curl -sS ipv4.icanhazip.com)
 clear
-echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e "$COLOR1│${NC}$COLBG1                              • MASWAY TUNNELING •                        $NC$COLOR1│${NC}"
-echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e "  ${BLUE}• ${GREEN}Sever Uptime        ${NC}: $( uptime -p  | cut -d " " -f 2-10000 ) "
-echo -e "  ${BLUE}• ${GREEN}Current Time        ${NC}: $( date -d "0 days" +"%d-%m-%Y | %X" )"
-echo -e "  ${BLUE}• ${GREEN}Operating System    ${NC}: $( cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g')( $(uname -m))"
-echo -e "  ${BLUE}• ${GREEN}Current Domain      ${NC}: $( cat /etc/xray/domain )"
-echo -e "  ${BLUE}• ${GREEN}Server IP           ${NC}: ${IP}"
-echo -e "  ${BLUE}• ${GREEN}ISP-VPS             ${NC}: ${ISP}"
-echo -e "  ${BLUE}• ${GREEN}City                ${NC}: ${CITY}"
-echo -e "  ${BLUE}• ${GREEN}Developer           ${NC}: MasWayVPN Tunneling ${NC}"
-echo -e "$COLOR1┌────────────────────────────────────────────────────────────┐${NC}"
-echo -e "                     << VPS SETTING >>                    \E[0m" | lolcat
-echo -e "$COLOR1└────────────────────────────────────────────────────────────┘${NC}"
-echo -e "$COLOR1 ┌─────────────────────────────────────────────────┐${NC}"
-echo -e " $COLOR1│$NC   ${COLOR1}[01]${NC}  CEK RUNNING  "
-echo -e " $COLOR1│$NC   ${COLOR1}[02]${NC}  ANTI TORRENT $sts"
-echo -e " $COLOR1│$NC   ${COLOR1}[04]${NC}  RESTART ALL"
-echo -e " $COLOR1│$NC "
-echo -e " $COLOR1│$NC   ${COLOR1}[0]${NC}  Go Back"
-echo -e "$COLOR1 └─────────────────────────────────────────────────┘${NC}"
-echo -e "$COLOR1┌────────────────────────────────────────────────────────────┐${NC}"
-echo -e "                     << MASWAY VPN >>                    \E[0m" | lolcat
-echo -e "$COLOR1└────────────────────────────────────────────────────────────┘${NC}"
+echo -e "$COLOR1  ╔═════════════════════════════╦═══════════════════════════════╗"
+echo -e "$COLOR1  ║ $COLOR2                    ✶ SETTINGS MENU ✶                    $COLOR1   ║"
+echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
+echo -e "$COLOR1  ╠➣$NC 1. CEK SERVICE             $COLOR1╠➣$NC 2. ANTI TORRENT $sts          $COLOR1║ "
+echo -e "$COLOR1  ║                             $COLOR1╠➣$NC 00. Back To Menu          $COLOR1   ║ "
+echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
+echo -e "$COLOR1  ╚═════════════════════════════╩═══════════════════════════════╝$NC"
 echo -e ""
 read -p "  Select menu :  "  opt
 echo -e   ""

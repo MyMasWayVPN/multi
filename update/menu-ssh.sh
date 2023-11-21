@@ -691,22 +691,11 @@ d1=$(date -d "$exp" +%s)
 d2=$(date -d "$today" +%s)
 certificate=$(( (d1 - d2) / 86400 ))
 clear
-echo -e "$COLOR1┌────────────────────────────────────────────────────────────┐${NC}"
-echo -e "                      << INFORMASI VPS >>                    \E[0m" | lolcat
-echo -e "$COLOR1└────────────────────────────────────────────────────────────┘${NC}"
-echo -e "  ${BLUE}• ${GREEN}Sever Uptime        ${NC}= $( uptime -p  | cut -d " " -f 2-10000 ) "
-echo -e "  ${BLUE}• ${GREEN}Current Time        ${NC}= $( date -d "0 days" +"%d-%m-%Y | %X" )"
-echo -e "  ${BLUE}• ${GREEN}Operating System    ${NC}= $( cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g')( $(uname -m))"
-echo -e "  ${BLUE}• ${GREEN}Current Domain      ${NC}= $( cat /etc/xray/domain )"
-echo -e "  ${BLUE}• ${GREEN}Server IP           ${NC}= $MYIP"
-echo -e "  ${BLUE}• ${GREEN}ISP-VPS             ${NC}= ${ISP}"
-echo -e "  ${BLUE}• ${GREEN}City                ${NC}= ${CITY}"
-echo -e "  ${BLUE}• ${GREEN}Developer           ${NC}= MasWayVPN Tunneling ${NC}"
 echo -e "$COLOR1  ╔═════════════════════════════╦═══════════════════════════════╗"
-echo -e "$COLOR1  ║ $COLOR2                  ✶ MASWAY TUNNELING ✶                   $COLOR1   ║"
+echo -e "$COLOR1  ║ $COLOR2                      ✶ SSH MENU ✶                       $COLOR1   ║"
 echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
 echo -e "$COLOR1  ╠➣$NC 1. ADD SSH                 $COLOR1╠➣$NC 4. DELETE SSH                $COLOR1║ "
-echo -e "$COLOR1  ╠➣$NC 2. TRIAL SSH               $COLOR1╠➣$NC 5. CEK USER                  $COLOR1║ "
+echo -e "$COLOR1  ╠➣$NC 2. TRIAL SSH               $COLOR1╠➣$NC 5. LIST USER                 $COLOR1║ "
 echo -e "$COLOR1  ╠➣$NC 3. RENEW SSH               $COLOR1╠➣$NC 6. USER ONLINE               $COLOR1║ "
 echo -e "$COLOR1  ║                             $COLOR1╠➣$NC 00. Back To Menu          $COLOR1   ║ "
 echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
@@ -720,8 +709,8 @@ case $opt in
 03 | 3) clear ; renewssh ;;
 #04 | 4) clear ; sshwss ;;
 04 | 4) clear ; delssh ;;
-05 | 5) clear ; cekssh ;;
-06 | 6) clear ; memberssh ;;
+05 | 5) clear ; memberssh ;;
+06 | 6) clear ; cekssh ;;
 00 | 0) clear ; menu ;;
 *) clear ; menu-ssh ;;
 esac

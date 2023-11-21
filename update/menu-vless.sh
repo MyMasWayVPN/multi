@@ -426,18 +426,14 @@ d1=$(date -d "$exp" +%s)
 d2=$(date -d "$today" +%s)
 certificate=$(( (d1 - d2) / 86400 ))
 clear
-echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$COLOR1│${NC} ${COLBG1}             • VLESS PANEL MENU •              ${NC} $COLOR1│$NC"
-echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
-echo -e " $COLOR1┌───────────────────────────────────────────────┐${NC}"
-echo -e " $COLOR1│$NC   ${COLOR1}[01]${NC} • ADD VLESS      ${COLOR1}[03]${NC} • DELETE VLESS${NC}   $COLOR1│$NC"
-echo -e " $COLOR1│$NC   ${COLOR1}[02]${NC} • RENEW VLESS${NC}    ${COLOR1}[04]${NC} • USER ONLINE    $COLOR1│$NC"
-echo -e " $COLOR1│$NC                                              ${NC} $COLOR1│$NC"
-echo -e " $COLOR1│$NC   ${COLOR1}[00]${NC} • GO BACK${NC}                              $COLOR1│$NC"
-echo -e " $COLOR1└───────────────────────────────────────────────┘${NC}"
-echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
-echo -e "$COLOR1│${NC}                 • MasWayVPN •                 $COLOR1│$NC"
-echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
+echo -e "$COLOR1  ╔═════════════════════════════╦═══════════════════════════════╗"
+echo -e "$COLOR1  ║ $COLOR2                     ✶ VLESS MENU ✶                      $COLOR1   ║"
+echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
+echo -e "$COLOR1  ╠➣$NC 1. ADD VLESS               $COLOR1╠➣$NC 4. DELETE VLESS              $COLOR1║ "
+echo -e "$COLOR1  ╠➣$NC 2. RENEW VLESS             $COLOR1╠➣$NC 5. USER ONLINE               $COLOR1║ "
+echo -e "$COLOR1  ║                             $COLOR1╠➣$NC 00. Back To Menu          $COLOR1   ║ "
+echo -e "$COLOR1  ║-----------------------------║-------------------------------║"
+echo -e "$COLOR1  ╚═════════════════════════════╩═══════════════════════════════╝$NC"
 echo -e ""
 read -p " Select menu :  "  opt
 echo -e ""
