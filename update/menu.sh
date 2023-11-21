@@ -279,7 +279,7 @@ sleep 1
 systemctl restart squid
 echo -e " $COLOR1│${NC}  [INFO] • Restarting Squid Services           $COLOR1│${NC}"
 sleep 1
-systemctl restart openvpn
+#systemctl restart openvpn
 systemctl restart nginx
 echo -e " $COLOR1│${NC}  [INFO] • Restarting Nginx Services           $COLOR1│${NC}"
 sleep 1
@@ -329,11 +329,9 @@ echo -e "💠${BIYellow} Jumlah Ram          🟰 ${COLOR1}${totalram} MB${NC}"
 echo -e "💠${BIYellow} CPU Usage           🟰 ${COLOR1}$cpu_usage${NC}"
 echo -e "💠${BIYellow} Whatsapp            🟰 ${BOLD}${BICyan}083120857907${NC}"
 echo -e "💠${BIYellow} AutoScript By       🟰 ${BOLD}${BICyan}MaSwayVPN${NC}"
-echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e "$COLOR1│${NC}$COLBG1                             • STATUS SERVICE •                           $NC$COLOR1│${NC}"
-echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
 echo -e "            ${COLOR2}[ SSH Websocket${NC}: ${status_ws}]  [ NGINX${NC}: ${status_nginx} ] [ XRAY${NC} : ${status_xray} ] "
+echo -e "            ${BICyan} ${NC} ${BICyan}HARI ini${NC}: ${Blue}$ttoday$NC ${BICyan}KEMARIN${NC}: ${Blue}$tyest$NC ${BICyan}BULAN${NC}: ${Blue}$tmon$NC $NC"
 echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e "$COLOR1              ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
 echo -e "\e[33m                       SSH / WS / UDP / DNS    : $ssh1"
@@ -346,12 +344,9 @@ echo -e "$COLOR1              │      \033[0m• ${GREEN}Version       ${NC}: $
 echo -e "$COLOR1              │      \033[0m• ${GREEN}Clients Name  ${NC}: ${YELLOW} $lame ${NC}"
 echo -e "$COLOR1              │      \033[0m• ${GREEN}Expired       ${NC}: ${YELLOW} $certificate Hari${NC}"
 echo -e "$COLOR1              ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
-echo -e "$COLOR1      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
-echo -e "            ${BICyan} ${NC} ${BICyan}HARI ini${NC}: ${Blue}$ttoday$NC ${BICyan}KEMARIN${NC}: ${Blue}$tyest$NC ${BICyan}BULAN${NC}: ${Blue}$tmon$NC $NC"
-echo -e "$COLOR1      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e ""
 echo -e "$COLOR1  ╔═══════════════════════════════════╦═══════════════════════════════════╗"
-echo -e "$COLOR1  ║ $COLOR2                        ✶ MASWAY TUNNELING ✶                       $COLOR1   ║"
+echo -e "$COLOR1  ║ $NC$COLBG1                        ✶ MASWAY TUNNELING ✶                       $COLOR1   ║"
 echo -e "$COLOR1  ║-----------------------------------║-----------------------------------║"
 echo -e "$COLOR1  ╠➣$NC 1. SSH MENU                      $COLOR1╠➣$NC 5. THEME MENU                    $COLOR1║ "
 echo -e "$COLOR1  ╠➣$NC 2. VMESS MENU                    $COLOR1╠➣$NC 6. UPDATE MENU                   $COLOR1║ "
@@ -369,7 +364,7 @@ echo -e "$COLOR1  ╠➣$NC 12. SPEDDTEST                    $COLOR1╠➣$NC 17
 echo -e "$COLOR1  ╠➣$NC 13. IP CHECKING                  $COLOR1╠➣$NC 18. RESTART SERVICE            $COLOR1  ║"
 echo -e "$COLOR1  ║-----------------------------------║-----------------------------------║"
 echo -e "$COLOR1  ╚═══════════════════════════════════╩═══════════════════════════════════╝$NC"
-
+echo -e ""
 echo -ne " Select menu : "; read opt
 case $opt in
 01 | 1) clear ; menu-ssh ;;
