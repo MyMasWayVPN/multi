@@ -352,7 +352,7 @@ wget https://raw.githubusercontent.com/mymaswayvpn/multi/main/ssh/ssh-vpn.sh && 
 echo -e "$green[INFO]$NC Install XRAY Websocket & GRPC!"
 sleep 2
 clear
-https://raw.githubusercontent.com/rehanvip/bb/main/xray/ins-xray.sh
+https://raw.githubusercontent.com/mynaswayvpn/multi/main/xray/install-xray.sh
 clear
 wget https://raw.githubusercontent.com/mymaswayvpn/multi/main/backup/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 #Instal Websocket
