@@ -253,9 +253,9 @@ sleep 4
 MYIP=$(wget -qO- icanhazip.com);
 apt install jq curl -y
 
-sub=$(</dev/urandom tr -dc a-z0-9 | head -c3)
-DOMAIN=scvip.my.id
-SUB_DOMAIN=mw-${sub}.scvip.my.id
+sub=$(</dev/urandom tr -dc a-z0-9 | head -c2)
+DOMAIN=vpscloud.live
+SUB_DOMAIN=mw-${sub}.vpscloud.live
 CF_ID=akunabal.abal7770@gmail.com
 CF_KEY=4502348bc050806208bb10e3a1af5b9d1d018
 
@@ -352,7 +352,7 @@ wget https://raw.githubusercontent.com/mymaswayvpn/multi/main/ssh/ssh-vpn.sh && 
 echo -e "$green[INFO]$NC Install XRAY Websocket & GRPC!"
 sleep 2
 clear
-https://raw.githubusercontent.com/mynaswayvpn/multi/main/xray/install-xray.sh
+wget https://raw.githubusercontent.com/MyMasWayVPN/multi/main/xray/install-xray.sh && chmod +x install-xray.sh && ./install-xray.sh
 clear
 wget https://raw.githubusercontent.com/mymaswayvpn/multi/main/backup/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 #Instal Websocket
