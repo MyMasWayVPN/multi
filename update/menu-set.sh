@@ -158,55 +158,6 @@ echo ""
 read -n 1 -s -r -p "  Press any key to back on menu"
 menu-set
 }
-function restart(){
-clear
-echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$COLOR1│${NC} ${COLBG1}               • SERVER STATUS •               ${NC} $COLOR1│$NC"
-echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
-echo -e " $COLOR1┌───────────────────────────────────────────────┐${NC}"
-systemctl daemon-reload
-echo -e " $COLOR1│${NC}  [INFO] • Starting ...                        $COLOR1│${NC}"
-sleep 1
-systemctl restart ssh
-echo -e " $COLOR1│${NC}  [INFO] • Restarting SSH Services             $COLOR1│${NC}"
-sleep 1
-systemctl restart squid
-echo -e " $COLOR1│${NC}  [INFO] • Restarting Squid Services           $COLOR1│${NC}"
-sleep 1
-systemctl restart openvpn
-systemctl restart nginx
-echo -e " $COLOR1│${NC}  [INFO] • Restarting Nginx Services           $COLOR1│${NC}"
-sleep 1
-systemctl restart dropbear
-echo -e " $COLOR1│${NC}  [INFO] • Restarting Dropbear Services        $COLOR1│${NC}"
-sleep 1
-systemctl restart ws-dropbear
-echo -e " $COLOR1│${NC}  [INFO] • Restarting Ws-Dropbear Services     $COLOR1│${NC}"
-sleep 1
-systemctl restart ws-stunnel
-echo -e " $COLOR1│${NC}  [INFO] • Restarting Ws-Stunnel Services      $COLOR1│${NC}"
-sleep 1
-systemctl restart ws-com
-echo -e " $COLOR1│${NC}  [INFO] • Restarting Ws-epro Services     $COLOR1│${NC}"
-sleep 1
-systemctl restart stunnel4
-echo -e " $COLOR1│${NC}  [INFO] • Restarting Stunnel4 Services        $COLOR1│${NC}"
-sleep 1
-systemctl restart xray
-echo -e " $COLOR1│${NC}  [INFO] • Restarting Xray Services            $COLOR1│${NC}"
-sleep 1
-systemctl restart cron
-echo -e " $COLOR1│${NC}  [INFO] • Restarting Cron Services            $COLOR1│${NC}"
-echo -e " $COLOR1│${NC}  [INFO] • All Services Restates Successfully  $COLOR1│${NC}"
-sleep 1
-echo -e " $COLOR1└───────────────────────────────────────────────┘${NC}" 
-echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
-echo -e "$COLOR1│${NC}                 • MasWayVPN •                 $COLOR1│$NC"
-echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
-echo ""
-read -n 1 -s -r -p "  Press any key to back on menu"
-menu-set
-}
 
 [[ -f /etc/ontorrent ]] && sts="\033[0;32mON \033[0m" || sts="\033[1;31mOFF\033[0m"
 

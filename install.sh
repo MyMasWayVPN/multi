@@ -100,15 +100,15 @@ echo "$localip $(hostname)" >> /etc/hosts
 fi
 mkdir -p /etc/xray
 
-echo -e "[ ${tyblue}NOTES${NC} ] Before we go.. "
-sleep 1
-echo -e "[ ${tyblue}NOTES${NC} ] I need check your headers first.."
+echo -e "[ ${tyblue}NOTES${NC} ] Tunggu Sebentar.. "
+sleep 3
+echo -e "[ ${tyblue}NOTES${NC} ] Permintaanmu Sedang Dicek.."
 sleep 2
-echo -e "[ ${green}INFO${NC} ] Checking headers"
-sleep 1
+echo -e "[ ${green}INFO${NC} ] Mulai Mengecek"
+sleep 5
 totet=`uname -r`
 REQUIRED_PKG="linux-headers-$totet"
-PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED_PKG|grep "install ok installed")
+PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED_PKG|grep "Di Izinkan")
 echo Checking for $REQUIRED_PKG: $PKG_OK
 if [ "" = "$PKG_OK" ]; then
   sleep 2
@@ -175,11 +175,11 @@ clear
 END
 chmod 644 /root/.profile
 
-echo -e "[ ${green}INFO${NC} ] Preparing the install file"
+echo -e "[ ${green}INFO${NC} ] Tunggu untuk install file"
 apt install git curl -y >/dev/null 2>&1
-echo -e "[ ${green}INFO${NC} ] Allright good ... installation file is ready"
+echo -e "[ ${green}INFO${NC} ] File Instalasi Siap.."
 sleep 2
-echo -ne "[ ${green}INFO${NC} ] Check permission : "
+echo -ne "[ ${green}INFO${NC} ] Cek Izin : "
 
 PERMISSION
 if [ -f /home/needupdate ]; then
@@ -202,8 +202,8 @@ echo "IP=" >> /var/lib/mwvpn-pro/ipvps.conf
 
 if [ -f "/etc/xray/domain" ]; then
 echo ""
-echo -e "[ ${green}INFO${NC} ] Script Already Installed"
-echo -ne "[ ${yell}WARNING${NC} ] Do you want to install again ? (y/n)? "
+echo -e "[ ${green}INFO${NC} ] Script Sudah Di Install"
+echo -ne "[ ${yell}WARNING${NC} ] Apa Kamu Ingin Menginstal Ulang? (y/n)? "
 read answer
 if [ "$answer" == "${answer#[Yy]}" ] ;then
 rm setup.sh
@@ -364,7 +364,7 @@ clear
 wget https://raw.githubusercontent.com/mymaswayvpn/multi/main/websocket/nontls.sh && chmod +x nontls.sh && ./nontls.sh
 clear
 #echo -e "$green[INFO]$NC Install SLDNS!"
-#wget https://raw.githubusercontent.com/mymaswayvpn/multi/main/slowdns/sldns && chmod +x sldns && ./sldns
+wget https://raw.githubusercontent.com/mymaswayvpn/multi/main/slowdns/sldns && chmod +x sldns && ./sldns
 #clear
 echo -e "$green[INFO]$NC Download Extra Menu"
 sleep 2
@@ -433,7 +433,7 @@ echo "   - SSH Websocket           : 80" | tee -a log-install.txt
 echo "   - SSH UDP                 : 1-65535" | tee -a log-install.txt
 echo "   - SSH SSL Websocket       : 443" | tee -a log-install.txt
 echo "   - SSH NON-SSL Websocket   : 80, 8880, 2082" | tee -a log-install.txt
-echo "   - Stunnel4                : 44, 447" | tee -a log-install.txt
+echo "   - Stunnel4                : 445, 447" | tee -a log-install.txt
 echo "   - Dropbear                : 109, 143" | tee -a log-install.txt
 echo "   - Badvpn                  : 7100-7900" | tee -a log-install.txt
 echo "   - Nginx                   : 81" | tee -a log-install.txt

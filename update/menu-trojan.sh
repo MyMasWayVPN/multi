@@ -245,6 +245,20 @@ sed -i '/#trojangrpc$/a\#! '"$user $exp"'\
 systemctl restart xray
 trojanlink1="trojan://${uuid}@${domain}:${tr}?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${user}"
 trojanlink="trojan://${uuid}@bug.com:${tr}?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
+TRX="
+<code>Transaksi Berhasil</code>
+<code>────────────────────</code>
+<b>  ⚠️TRANSAKSI TROJAN WS⚠️      </b>
+<code>────────────────────</code>
+<b>🌟Owner   :</b> <code>$OWNER</code>
+<b>🌟Detail  :</b> <code>$AKUN</code>
+<b>🌟Durasi  :</b> <code>$exp</code>
+<b>🌟Server  :</b> <code>${domain}</code>
+<b>────────────────────</code>
+<i>Notifikasi Via MasWayBOT</i>
+<b>Tele : @maswayvpn</b>
+"
+clear
 cat > /home/vps/public_html/user-xray/trojan-$user.txt <<END
 ====================
   FORMAT OPENCLASH  
@@ -253,7 +267,7 @@ Trojan-WS (SNI)
 ====================
 - name: ${user}
   server: ${domain}
-  port: $tls
+  port: 443
   type: trojan
   password: ${uuid}
   skip-cert-verify: true
@@ -269,7 +283,7 @@ Trojan-WSS
 ====================
 - name: ${user}
   server: IPCDN/BUGCDN.COM
-  port: $tls
+  port: 443
   type: trojan
   password: ${uuid}
   skip-cert-verify: true
@@ -285,7 +299,7 @@ Trojan-WS (CDN)
 ====================
 - name: ${user}
   server: IPCDN/BUGCDN.COM
-  port: $tls
+  port: 443
   type: trojan
   password: ${uuid}
   network: ws
@@ -302,7 +316,7 @@ Trojan GRPC
 - name: ${user}
   type: trojan
   server: ${domain}
-  port: $tls
+  port: 443
   password: ${uuid}
   udp: true
   sni: BUGSNI.COM
@@ -311,30 +325,15 @@ Trojan GRPC
   grpc-opts:
     grpc-service-name: trojan-grpc
 ====================
- Link TLS :
- ${vlesslink1}
-   
- Link NTLS : 
- ${vlesslink2}
-
+ Link WS :
+ ${trojanlink}
+  
  Link GRPC : 
- ${vlesslink3}
+ ${trojanlink1}
 ====================
 END
 clear
-TRX="
-<code>Transaksi Berhasil</code>
-<code>────────────────────</code>
-<b>  ⚠️TRANSAKSI TROJAN WS⚠️      </b>
-<code>────────────────────</code>
-<b>🌟Owner   :</b> <code>$OWNER</code>
-<b>🌟Detail  :</b> <code>$AKUN</code>
-<b>🌟Durasi  :</b> <code>$exp</code>
-<b>🌟Server  :</b> <code>${domain}</code>
-<b>────────────────────</code>
-<i>Notifikasi Via MasWayBOT</i>
-<b>Tele : @maswayvpn</b>
-"
+
 curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TRX&parse_mode=html" $URL
 clear
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"

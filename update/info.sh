@@ -70,6 +70,7 @@ certificate=$(( (d1 - d2) / 86400 ))
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 MYIP=$(curl -sS ipv4.icanhazip.com)
+Client=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
 clear
 echo -e "$COLOR1┌────────────────────────────────────────────────────────────┐${NC}"
 echo -e "                      << INFORMASI VPS >>                    \E[0m" | lolcat
@@ -78,10 +79,10 @@ echo -e "  ${BLUE}• ${GREEN}Sever Uptime        ${NC}= $( uptime -p  | cut -d 
 echo -e "  ${BLUE}• ${GREEN}Current Time        ${NC}= $( date -d "0 days" +"%d-%m-%Y | %X" )"
 echo -e "  ${BLUE}• ${GREEN}Operating System    ${NC}= $( cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g')( $(uname -m))"
 echo -e "  ${BLUE}• ${GREEN}Current Domain      ${NC}= $( cat /etc/xray/domain )"
-echo -e "  ${BLUE}• ${GREEN}Server IP           ${NC}= ${IP}"
+echo -e "  ${BLUE}• ${GREEN}Server IP           ${NC}= ${MYIP}"
 echo -e "  ${BLUE}• ${GREEN}ISP-VPS             ${NC}= ${ISP}"
 echo -e "  ${BLUE}• ${GREEN}City                ${NC}= ${CITY}"
-echo -e "  ${BLUE}• ${GREEN}Clients Name        ${NC}= ${YELLOW}$Name ${NC}"
+echo -e "  ${BLUE}• ${GREEN}Clients Name        ${NC}= ${YELLOW}$Client ${NC}"
 echo -e "  ${BLUE}• ${GREEN}Script Expired      ${NC}= ${YELLOW}$certificate Days${NC}"
 echo -e "  ${BLUE}• ${GREEN}Developer           ${NC}= MasWayVPN Tunneling ${NC}"
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"

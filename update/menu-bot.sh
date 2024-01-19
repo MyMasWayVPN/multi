@@ -43,7 +43,7 @@ BURIQ () {
 
 MYIP=$(curl -sS ipv4.icanhazip.com)
 Name=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $2}')
-Isadmin=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izinmini | grep $MYIP | awk '{print $5}')
+Isadmin=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/mymaswayvpn.github.io/main/akses/ip/buyer/izin | grep $MYIP | awk '{print $5}')
 echo $Name > /usr/local/etc/.$Name.ini
 CekOne=$(cat /usr/local/etc/.$Name.ini)
 

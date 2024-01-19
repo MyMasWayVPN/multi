@@ -119,6 +119,54 @@ echo ""
 read -n 1 -s -r -p "  Press any key to back on menu"
 autoboot  
 }
+function menu5(){
+        clear
+echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
+echo -e "$COLOR1│ $NC$COLBG1                • AUTO REBOOT •                $COLOR1 │$NC"
+echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
+echo -e " $COLOR1┌───────────────────────────────────────────────┐${NC}"
+FILE=/etc/cron.d/re_otm
+if [ -f "$FILE" ]; then
+rm -f /etc/cron.d/re_otm
+else 
+re="ok"
+fi
+rm -f /etc/cron.d/auto_reboot
+echo "0 5 * * * root /usr/bin/rebootvps" > /etc/cron.d/auto_reboot && chmod +x /etc/cron.d/auto_reboot
+echo -e " $COLOR1│$NC [INFO] Auto Reboot Active Successfully"
+echo -e " $COLOR1│$NC [INFO] Auto Reboot : Setiap Jam 05:00"
+echo -e " $COLOR1│$NC [INFO] Active & Running Automaticly"
+echo -e " $COLOR1└───────────────────────────────────────────────┘${NC}"
+echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
+echo -e "$COLOR1│${NC}                 • MasWayVPN •                 $COLOR1│$NC"
+echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
+echo ""
+read -n 1 -s -r -p "  Press any key to back on menu"
+autoboot  
+}
+function menu6(){
+        clear
+echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
+echo -e "$COLOR1│ $NC$COLBG1                • AUTO REBOOT •                $COLOR1 │$NC"
+echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
+echo -e " $COLOR1┌───────────────────────────────────────────────┐${NC}"
+FILE=/etc/cron.d/re_otm
+if [ -f "$FILE" ]; then
+rm -f /etc/cron.d/re_otm
+else 
+re="ok"
+fi
+rm -f /etc/cron.d/auto_reboot
+echo -e " $COLOR1│$NC [INFO] Auto Reboot InActive Successfully"
+echo -e " $COLOR1│$NC [INFO] Auto Reboot : Non-Aktif"
+echo -e " $COLOR1└───────────────────────────────────────────────┘${NC}"
+echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
+echo -e "$COLOR1│${NC}                 • MasWayVPN •                 $COLOR1│$NC"
+echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}" 
+echo ""
+read -n 1 -s -r -p "  Press any key to back on menu"
+autoboot  
+}
 clear
 echo -e "$PURPLE┌─────────────────────────────────────────────────┐${NC}"
 echo -e "$PURPLE│ ${BLUE}                $NC•$BLUE AUTO REBOOT $NC•                $PURPLE │$NC"
@@ -128,6 +176,8 @@ echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}01${NC}]  Every 30 Min  "
 echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}02${NC}]  Every 60 Min  "
 echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}03${NC}]  Every 12 H/s "
 echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}04${NC}]  Every 24 H/s"
+echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}05${NC}]  Every 05:00 PM"
+echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}06${NC}]  Delete Auto Reboot"
 echo -e " $PURPLE│$NC "
 echo -e " $PURPLE│$NC   ${COLOR1}[${BLUE}00${NC}]  Go Back"
 echo -e " $PURPLE└───────────────────────────────────────────────┘${NC}"
@@ -142,6 +192,8 @@ case $opt in
 02 | 2) clear ; menu2 ;;
 03 | 3) clear ; menu3 ;;
 04 | 4) clear ; menu4 ;;
+05 | 5) clear ; menu5 ;;
+06 | 6) clear ; menu6 ;;
 00 | 0) clear ; menu ;;
 *) clear ; autoboot ;;
 esac
